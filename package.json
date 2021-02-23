@@ -1,0 +1,44 @@
+{
+  "name": "js-crash-course",
+  "version": "0.0.1",
+  "description": "Node.js Crash Course for Redis",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "./node_modules/nodemon/bin/nodemon.js",
+    "load": "node src/utils/dataloader.js --",
+    "lint": "./node_modules/eslint/bin/eslint.js src",
+    "start": "node ./src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redislabs-training/node-js-crash-course.git"
+  },
+  "keywords": [
+    "Redis"
+  ],
+  "author": "Redis Labs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redislabs-training/node-js-crash-course/issues"
+  },
+  "homepage": "https://github.com/redislabs-training/node-js-crash-course#readme",
+  "dependencies": {
+    "better-config": "^1.2.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "ioredis": "^4.22.0",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.7"
+  }
+}

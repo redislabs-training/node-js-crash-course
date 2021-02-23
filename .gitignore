@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Other Editor files etc
+*.swp
+.DS_Store

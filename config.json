@@ -1,0 +1,12 @@
+{
+  "application": {
+    "port": 8081,
+    "logLevel": "debug"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "password": null,
+    "keyPrefix": "ncc"
+  }
+}

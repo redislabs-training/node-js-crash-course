@@ -1,0 +1,24 @@
+const winston = require('winston');
+const config = require('better-config');
+
+const logger = winston.createLogger({
+  level: config.get('application.logLevel'),
+  transports: [
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple(),
+      ),
+    }),
+  ],
+});
+
+logger.stream = {
+  write: (message) => {
+    // Remove double newline issue with piping morgan server request
+    // log through Winston logger.
+    logger.info(message.length > 0 ? message.substring(0, message.length - 1) : message);
+  },
+};
+
+module.exports = logger;
