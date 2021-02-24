@@ -7,7 +7,7 @@ const redis = require('./redisclient');
 const redisClient = redis.getClient();
 
 const usage = () => {
-  console.error('Usage: npm run load users|locations|all');
+  console.error('Usage: npm run load users|locations|locationdetails|all');
   process.exit(0);
 };
 
