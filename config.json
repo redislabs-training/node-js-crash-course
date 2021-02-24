@@ -1,6 +1,10 @@
 {
+  "logLevel": "debug",
   "application": {
-    "port": 8081,
+    "port": 8081
+  },
+  "checkinReceiver": {
+    "port": 8082,
     "logLevel": "debug"
   },
   "redis": {
