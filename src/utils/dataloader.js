@@ -11,16 +11,11 @@ const usage = () => {
   process.exit(0);
 };
 
-const loadUsers = async () => {
-  console.log('Loading user data...');
-  /* eslint-disable global-require */
-  const usersJSON = require('../../data/users.json');
-  /* eslint-enable */
-
+const loadData = async (jsonArray, keyName) => {
   const pipeline = redisClient.pipeline();
 
-  for (const user of usersJSON.users) {
-    pipeline.hset(redis.getKeyName('users', user.id), user);
+  for (const obj of jsonArray) {
+    pipeline.hset(redis.getKeyName(keyName, obj.id), obj);
   }
 
   const responses = await pipeline.exec();
@@ -32,14 +27,27 @@ const loadUsers = async () => {
     }
   }
 
+  return errorCount;
+};
+
+const loadUsers = async () => {
+  console.log('Loading user data...');
+  /* eslint-disable global-require */
+  const usersJSON = require('../../data/users.json');
+  /* eslint-enable */
+
+  const errorCount = await loadData(usersJSON.users, 'users');
   console.log(`User data loaded with ${errorCount} errors.`);
 };
 
 const loadLocations = async () => {
-  console.log('TODO load locations...');
+  console.log('Loading location data...');
   /* eslint-disable global-require */
   const locationsJSON = require('../../data/locations.json');
   /* eslint-enable */
+
+  const errorCount = await loadData(locationsJSON.locations, 'locations');
+  console.log(`Location data loaded with ${errorCount} errors.`);
 };
 
 const runDataLoader = async (params) => {
