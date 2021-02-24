@@ -55,6 +55,24 @@ const loadLocationDetails = async () => {
   /* eslint-disable global-require */
   const locationsJSON = require('../../data/locationdetails.json');
   /* eslint-enable */
+
+  const pipeline = redisClient.pipeline();
+
+  for (const locationDetail of locationsJSON.locationDetails) {
+    pipeline.call('JSON.SET', redis.getKeyName('locationdetails', locationDetail.id), '.', JSON.stringify(locationDetail));
+  }
+
+  const responses = await pipeline.exec();
+
+  let errorCount = 0;
+
+  for (const response of responses) {
+    if (response[0] !== null && response[1] !== 'OK') {
+      errorCount += 1;
+    }
+  }
+
+  console.log(`Location detail data loaded with ${errorCount} errors.`);
 };
 
 const runDataLoader = async (params) => {
