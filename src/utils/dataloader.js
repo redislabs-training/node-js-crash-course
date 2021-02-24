@@ -50,6 +50,13 @@ const loadLocations = async () => {
   console.log(`Location data loaded with ${errorCount} errors.`);
 };
 
+const loadLocationDetails = async () => {
+  console.log('Loading location details...');
+  /* eslint-disable global-require */
+  const locationsJSON = require('../../data/locationdetails.json');
+  /* eslint-enable */
+};
+
 const runDataLoader = async (params) => {
   if (params.length !== 4) {
     usage();
@@ -64,9 +71,13 @@ const runDataLoader = async (params) => {
     case 'locations':
       await loadLocations();
       break;
+    case 'locationdetails':
+      await loadLocationDetails();
+      break;
     case 'all':
       await loadUsers();
       await loadLocations();
+      await loadLocationDetails();
       break;
     default:
       usage();
