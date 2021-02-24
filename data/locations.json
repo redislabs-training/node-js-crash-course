@@ -1,11 +1,1939 @@
 {
-    "locations": [
-        // id
-        // name
-        // category
-        // location
-        // numCheckins
-        // numStars
-        // averageStars
-    ]
+  "locations": [
+    {
+      "id": 1,
+      "name": "Jan's Place",
+      "category": "cafe",
+      "location": "-122.193849,38.10476999999999",
+      "numCheckins": 379,
+      "numStars": 1894,
+      "averageStars": 5
+    },
+    {
+      "id": 2,
+      "name": "Luigi's",
+      "category": "restaurant",
+      "location": "-122.059762,37.593981",
+      "numCheckins": 115,
+      "numStars": 68,
+      "averageStars": 1
+    },
+    {
+      "id": 3,
+      "name": "The Half Moon",
+      "category": "bar",
+      "location": "-122.091054,37.70382",
+      "numCheckins": 685,
+      "numStars": 1673,
+      "averageStars": 2
+    },
+    {
+      "id": 4,
+      "name": "Rise and Shine Breakfast",
+      "category": "cafe",
+      "location": "-122.076775,37.689189",
+      "numCheckins": 994,
+      "numStars": 1901,
+      "averageStars": 2
+    },
+    {
+      "id": 5,
+      "name": "Dine at Nine",
+      "category": "cafe",
+      "location": "-121.976451,37.562256",
+      "numCheckins": 868,
+      "numStars": 2337,
+      "averageStars": 3
+    },
+    {
+      "id": 6,
+      "name": "Top Cuts",
+      "category": "hair",
+      "location": "-122.228238,37.783431",
+      "numCheckins": 420,
+      "numStars": 1421,
+      "averageStars": 3
+    },
+    {
+      "id": 7,
+      "name": "Hair by Dmitri",
+      "category": "hair",
+      "location": "-122.266436,37.877894",
+      "numCheckins": 426,
+      "numStars": 329,
+      "averageStars": 1
+    },
+    {
+      "id": 8,
+      "name": "Downtown John Brown's",
+      "category": "bar",
+      "location": "-122.0864272,37.6410262",
+      "numCheckins": 247,
+      "numStars": 1220,
+      "averageStars": 5
+    },
+    {
+      "id": 9,
+      "name": "The Crafty Pint",
+      "category": "bar",
+      "location": "-121.732765,37.710745",
+      "numCheckins": 967,
+      "numStars": 1384,
+      "averageStars": 1
+    },
+    {
+      "id": 10,
+      "name": "All Day Fitness",
+      "category": "gym",
+      "location": "-122.0444344,37.5666441",
+      "numCheckins": 498,
+      "numStars": 2175,
+      "averageStars": 4
+    },
+    {
+      "id": 11,
+      "name": "Ben's Burger Joint",
+      "category": "cafe",
+      "location": "-121.986823,37.557882",
+      "numCheckins": 906,
+      "numStars": 4130,
+      "averageStars": 5
+    },
+    {
+      "id": 12,
+      "name": "La Riviera",
+      "category": "restaurant",
+      "location": "-121.994476,37.582453",
+      "numCheckins": 527,
+      "numStars": 764,
+      "averageStars": 1
+    },
+    {
+      "id": 13,
+      "name": "Fresh Agave",
+      "category": "restaurant",
+      "location": "-121.8703701,37.6992001",
+      "numCheckins": 204,
+      "numStars": 772,
+      "averageStars": 4
+    },
+    {
+      "id": 14,
+      "name": "El Rodeo",
+      "category": "bar",
+      "location": "-122.117142,37.67869",
+      "numCheckins": 625,
+      "numStars": 558,
+      "averageStars": 1
+    },
+    {
+      "id": 15,
+      "name": "Erwin's Place",
+      "category": "bar",
+      "location": "-122.2825201,37.84557849999999",
+      "numCheckins": 655,
+      "numStars": 2059,
+      "averageStars": 3
+    },
+    {
+      "id": 16,
+      "name": "Dine on 4th",
+      "category": "restaurant",
+      "location": "-122.202326,37.767671",
+      "numCheckins": 648,
+      "numStars": 891,
+      "averageStars": 1
+    },
+    {
+      "id": 17,
+      "name": "City Cycles",
+      "category": "retail",
+      "location": "-122.0460256,37.5738888",
+      "numCheckins": 904,
+      "numStars": 347,
+      "averageStars": 0
+    },
+    {
+      "id": 18,
+      "name": "Old Town Bar and Grill",
+      "category": "bar",
+      "location": "-122.11822,37.752039",
+      "numCheckins": 632,
+      "numStars": 2362,
+      "averageStars": 4
+    },
+    {
+      "id": 19,
+      "name": "New Bombay",
+      "category": "restaurant",
+      "location": "-122.1907449,37.7705346",
+      "numCheckins": 596,
+      "numStars": 238,
+      "averageStars": 0
+    },
+    {
+      "id": 20,
+      "name": "Phone Repairs 4 U",
+      "category": "retail",
+      "location": "-122.147074,37.72956300000001",
+      "numCheckins": 98,
+      "numStars": 471,
+      "averageStars": 5
+    },
+    {
+      "id": 21,
+      "name": "Shipping and Mailing Center",
+      "category": "retail",
+      "location": "-122.085865,37.696683",
+      "numCheckins": 482,
+      "numStars": 2348,
+      "averageStars": 5
+    },
+    {
+      "id": 22,
+      "name": "AllFit Dance Center",
+      "category": "gym",
+      "location": "-122.0280747,37.9966039",
+      "numCheckins": 787,
+      "numStars": 3252,
+      "averageStars": 4
+    },
+    {
+      "id": 23,
+      "name": "City Hair Stylists",
+      "category": "hair",
+      "location": "-122.180694,37.768532",
+      "numCheckins": 928,
+      "numStars": 992,
+      "averageStars": 1
+    },
+    {
+      "id": 24,
+      "name": "Rebellion Fitness",
+      "category": "gym",
+      "location": "-122.1762833,37.7497401",
+      "numCheckins": 780,
+      "numStars": 3400,
+      "averageStars": 4
+    },
+    {
+      "id": 25,
+      "name": "Anastasia's Greek Restaurant",
+      "category": "restaurant",
+      "location": "-121.7411119,37.690199",
+      "numCheckins": 611,
+      "numStars": 394,
+      "averageStars": 1
+    },
+    {
+      "id": 26,
+      "name": "Big Dog Brewing Company",
+      "category": "bar",
+      "location": "-122.060062,37.390391",
+      "numCheckins": 634,
+      "numStars": 118,
+      "averageStars": 0
+    },
+    {
+      "id": 27,
+      "name": "Come Dine With Us",
+      "category": "restaurant",
+      "location": "-121.95302,37.514834",
+      "numCheckins": 305,
+      "numStars": 496,
+      "averageStars": 2
+    },
+    {
+      "id": 28,
+      "name": "24 Hour Work Out Center",
+      "category": "gym",
+      "location": "-122.0904612,37.6618825",
+      "numCheckins": 301,
+      "numStars": 52,
+      "averageStars": 0
+    },
+    {
+      "id": 29,
+      "name": "Carla's Jewelry",
+      "category": "retail",
+      "location": "-122.206479,37.757904",
+      "numCheckins": 824,
+      "numStars": 1988,
+      "averageStars": 2
+    },
+    {
+      "id": 30,
+      "name": "The Soup Place",
+      "category": "restaurant",
+      "location": "-121.860128,37.680463",
+      "numCheckins": 424,
+      "numStars": 2078,
+      "averageStars": 5
+    },
+    {
+      "id": 31,
+      "name": "Albert's",
+      "category": "bar",
+      "location": "-122.077478,37.399505",
+      "numCheckins": 153,
+      "numStars": 287,
+      "averageStars": 2
+    },
+    {
+      "id": 32,
+      "name": "Hot Yoga Lounge",
+      "category": "gym",
+      "location": "-122.091801,37.6629263",
+      "numCheckins": 691,
+      "numStars": 699,
+      "averageStars": 1
+    },
+    {
+      "id": 33,
+      "name": "City Indoor Cycling",
+      "category": "gym",
+      "location": "-122.074569,37.680081",
+      "numCheckins": 667,
+      "numStars": 3224,
+      "averageStars": 5
+    },
+    {
+      "id": 34,
+      "name": "The Bridge",
+      "category": "cafe",
+      "location": "-122.2149729,37.783471",
+      "numCheckins": 324,
+      "numStars": 482,
+      "averageStars": 1
+    },
+    {
+      "id": 35,
+      "name": "Tasty Sushi",
+      "category": "restaurant",
+      "location": "-122.098647,37.642952",
+      "numCheckins": 352,
+      "numStars": 1035,
+      "averageStars": 3
+    },
+    {
+      "id": 36,
+      "name": "The Old Bank",
+      "category": "bar",
+      "location": "-122.1192658,37.70179340000001",
+      "numCheckins": 610,
+      "numStars": 2377,
+      "averageStars": 4
+    },
+    {
+      "id": 37,
+      "name": "The Bell",
+      "category": "bar",
+      "location": "-122.112388,37.648857",
+      "numCheckins": 17,
+      "numStars": 68,
+      "averageStars": 4
+    },
+    {
+      "id": 38,
+      "name": "Priya's Salon",
+      "category": "hair",
+      "location": "-122.112121,37.682588",
+      "numCheckins": 724,
+      "numStars": 1801,
+      "averageStars": 2
+    },
+    {
+      "id": 39,
+      "name": "Rob's Grill",
+      "category": "restaurant",
+      "location": "-122.209418,37.776415",
+      "numCheckins": 791,
+      "numStars": 1721,
+      "averageStars": 2
+    },
+    {
+      "id": 40,
+      "name": "Village Pizza",
+      "category": "restaurant",
+      "location": "-122.012744,37.555484",
+      "numCheckins": 792,
+      "numStars": 2431,
+      "averageStars": 3
+    },
+    {
+      "id": 41,
+      "name": "The Ruby Room",
+      "category": "bar",
+      "location": "-122.038397,37.61744100000001",
+      "numCheckins": 132,
+      "numStars": 509,
+      "averageStars": 4
+    },
+    {
+      "id": 42,
+      "name": "Red Door Wine Bar",
+      "category": "bar",
+      "location": "-122.2938418,37.8676351",
+      "numCheckins": 962,
+      "numStars": 2579,
+      "averageStars": 3
+    },
+    {
+      "id": 43,
+      "name": "City Bookstore",
+      "category": "retail",
+      "location": "-122.03291,37.584941",
+      "numCheckins": 200,
+      "numStars": 865,
+      "averageStars": 4
+    },
+    {
+      "id": 44,
+      "name": "Walt's Watch Repair",
+      "category": "retail",
+      "location": "-122.249694,37.884824",
+      "numCheckins": 431,
+      "numStars": 425,
+      "averageStars": 1
+    },
+    {
+      "id": 45,
+      "name": "New Star Chinese Food",
+      "category": "restaurant",
+      "location": "-122.25217,37.8147324",
+      "numCheckins": 781,
+      "numStars": 987,
+      "averageStars": 1
+    },
+    {
+      "id": 46,
+      "name": "Inspire Hair",
+      "category": "hair",
+      "location": "-122.008143,37.543515",
+      "numCheckins": 431,
+      "numStars": 1658,
+      "averageStars": 4
+    },
+    {
+      "id": 47,
+      "name": "Orbit Coffee Bar",
+      "category": "cafe",
+      "location": "-122.129528,37.765568",
+      "numCheckins": 157,
+      "numStars": 246,
+      "averageStars": 2
+    },
+    {
+      "id": 48,
+      "name": "King of Dumplings",
+      "category": "restaurant",
+      "location": "-121.759468,37.690035",
+      "numCheckins": 432,
+      "numStars": 1276,
+      "averageStars": 3
+    },
+    {
+      "id": 49,
+      "name": "Lounge 99",
+      "category": "bar",
+      "location": "-122.0300502,37.6992206",
+      "numCheckins": 117,
+      "numStars": 242,
+      "averageStars": 2
+    },
+    {
+      "id": 50,
+      "name": "VIP Barber Lounge",
+      "category": "hair",
+      "location": "-122.059504,37.70902600000001",
+      "numCheckins": 576,
+      "numStars": 1116,
+      "averageStars": 2
+    },
+    {
+      "id": 51,
+      "name": "World Famous Steaks",
+      "category": "restaurant",
+      "location": "-122.266142,37.85015",
+      "numCheckins": 779,
+      "numStars": 2947,
+      "averageStars": 4
+    },
+    {
+      "id": 52,
+      "name": "Runner's Paradise",
+      "category": "gym",
+      "location": "-122.078659,37.641711",
+      "numCheckins": 902,
+      "numStars": 456,
+      "averageStars": 1
+    },
+    {
+      "id": 53,
+      "name": "Rick's Restaurant Supply",
+      "category": "retail",
+      "location": "-122.152331,37.72780789999999",
+      "numCheckins": 755,
+      "numStars": 3441,
+      "averageStars": 5
+    },
+    {
+      "id": 54,
+      "name": "Urban Fitness",
+      "category": "gym",
+      "location": "-122.076923,37.635859",
+      "numCheckins": 397,
+      "numStars": 1205,
+      "averageStars": 3
+    },
+    {
+      "id": 55,
+      "name": "The Green Man",
+      "category": "bar",
+      "location": "-122.075993,37.591721",
+      "numCheckins": 215,
+      "numStars": 3,
+      "averageStars": 0
+    },
+    {
+      "id": 56,
+      "name": "Baldwin's Locksmiths",
+      "category": "retail",
+      "location": "-122.147019,37.670738",
+      "numCheckins": 235,
+      "numStars": 675,
+      "averageStars": 3
+    },
+    {
+      "id": 57,
+      "name": "Legends Sports Bar and Grill",
+      "category": "bar",
+      "location": "-122.2595092,37.862903",
+      "numCheckins": 759,
+      "numStars": 1392,
+      "averageStars": 2
+    },
+    {
+      "id": 58,
+      "name": "Pure Hair Studio",
+      "category": "hair",
+      "location": "-122.1129728,37.4068693",
+      "numCheckins": 10,
+      "numStars": 14,
+      "averageStars": 1
+    },
+    {
+      "id": 59,
+      "name": "Merlin's Cat Cafe",
+      "category": "cafe",
+      "location": "-122.0270913,37.7157257",
+      "numCheckins": 601,
+      "numStars": 1356,
+      "averageStars": 2
+    },
+    {
+      "id": 60,
+      "name": "Zaap",
+      "category": "restaurant",
+      "location": "-122.0832649,37.6678961",
+      "numCheckins": 369,
+      "numStars": 1252,
+      "averageStars": 3
+    },
+    {
+      "id": 61,
+      "name": "The Nightingale",
+      "category": "bar",
+      "location": "-122.069607,37.60442",
+      "numCheckins": 853,
+      "numStars": 821,
+      "averageStars": 1
+    },
+    {
+      "id": 62,
+      "name": "Salon 2000",
+      "category": "hair",
+      "location": "-121.944464,37.94042",
+      "numCheckins": 387,
+      "numStars": 268,
+      "averageStars": 1
+    },
+    {
+      "id": 63,
+      "name": "Bar Uno",
+      "category": "bar",
+      "location": "-122.032784,37.661345",
+      "numCheckins": 553,
+      "numStars": 1047,
+      "averageStars": 2
+    },
+    {
+      "id": 64,
+      "name": "The Red Otter Sports Bar",
+      "category": "bar",
+      "location": "-121.85909,37.6991919",
+      "numCheckins": 698,
+      "numStars": 166,
+      "averageStars": 0
+    },
+    {
+      "id": 65,
+      "name": "City Fish and Chips",
+      "category": "restaurant",
+      "location": "-122.067741,37.65444100000001",
+      "numCheckins": 148,
+      "numStars": 170,
+      "averageStars": 1
+    },
+    {
+      "id": 66,
+      "name": "Deepak's Pet Supply",
+      "category": "retail",
+      "location": "-122.07335,37.680829",
+      "numCheckins": 562,
+      "numStars": 1821,
+      "averageStars": 3
+    },
+    {
+      "id": 67,
+      "name": "The Moon Under Water",
+      "category": "bar",
+      "location": "-122.285823,37.8591054",
+      "numCheckins": 711,
+      "numStars": 2401,
+      "averageStars": 3
+    },
+    {
+      "id": 68,
+      "name": "City Law",
+      "category": "retail",
+      "location": "-122.2981152,37.9028101",
+      "numCheckins": 992,
+      "numStars": 1454,
+      "averageStars": 1
+    },
+    {
+      "id": 69,
+      "name": "Express Sandwiches",
+      "category": "cafe",
+      "location": "-122.256035,37.839058",
+      "numCheckins": 854,
+      "numStars": 488,
+      "averageStars": 1
+    },
+    {
+      "id": 70,
+      "name": "Jane's Bakehouse",
+      "category": "retail",
+      "location": "-122.082773,37.580691",
+      "numCheckins": 891,
+      "numStars": 598,
+      "averageStars": 1
+    },
+    {
+      "id": 71,
+      "name": "Florence's Pie Place",
+      "category": "cafe",
+      "location": "-121.9872735,37.5516245",
+      "numCheckins": 341,
+      "numStars": 41,
+      "averageStars": 0
+    },
+    {
+      "id": 72,
+      "name": "Hair by Danielle",
+      "category": "hair",
+      "location": "-122.003412,37.555306",
+      "numCheckins": 867,
+      "numStars": 245,
+      "averageStars": 0
+    },
+    {
+      "id": 73,
+      "name": "Top Floor Barber",
+      "category": "hair",
+      "location": "-121.733308,37.682649",
+      "numCheckins": 815,
+      "numStars": 3532,
+      "averageStars": 4
+    },
+    {
+      "id": 74,
+      "name": "All Day Fitness",
+      "category": "gym",
+      "location": "-121.951627,37.546996",
+      "numCheckins": 77,
+      "numStars": 98,
+      "averageStars": 1
+    },
+    {
+      "id": 75,
+      "name": "La Puerta",
+      "category": "bar",
+      "location": "-121.796632,37.653774",
+      "numCheckins": 930,
+      "numStars": 3663,
+      "averageStars": 4
+    },
+    {
+      "id": 76,
+      "name": "City Eye Doctors",
+      "category": "retail",
+      "location": "-122.2493644,37.8058663",
+      "numCheckins": 532,
+      "numStars": 2328,
+      "averageStars": 4
+    },
+    {
+      "id": 77,
+      "name": "Paul's Carpets",
+      "category": "retail",
+      "location": "-122.072806,37.628092",
+      "numCheckins": 963,
+      "numStars": 3544,
+      "averageStars": 4
+    },
+    {
+      "id": 78,
+      "name": "Track and Field Fitness",
+      "category": "gym",
+      "location": "-122.0304698,37.5261943",
+      "numCheckins": 127,
+      "numStars": 230,
+      "averageStars": 2
+    },
+    {
+      "id": 79,
+      "name": "Paul's School of Hairdressing",
+      "category": "hair",
+      "location": "-122.0675144,37.6887201",
+      "numCheckins": 605,
+      "numStars": 1711,
+      "averageStars": 3
+    },
+    {
+      "id": 80,
+      "name": "The Winchester",
+      "category": "bar",
+      "location": "-121.701526,37.70168",
+      "numCheckins": 390,
+      "numStars": 293,
+      "averageStars": 1
+    },
+    {
+      "id": 81,
+      "name": "Sunglass Place",
+      "category": "retail",
+      "location": "-122.100733,37.660696",
+      "numCheckins": 997,
+      "numStars": 372,
+      "averageStars": 0
+    },
+    {
+      "id": 82,
+      "name": "Salon 73",
+      "category": "hair",
+      "location": "-121.8514835,37.6681878",
+      "numCheckins": 273,
+      "numStars": 823,
+      "averageStars": 3
+    },
+    {
+      "id": 83,
+      "name": "Box Fit",
+      "category": "gym",
+      "location": "-122.284523,37.896256",
+      "numCheckins": 161,
+      "numStars": 731,
+      "averageStars": 5
+    },
+    {
+      "id": 84,
+      "name": "Hair by Guy",
+      "category": "hair",
+      "location": "-122.158683,37.7329999",
+      "numCheckins": 49,
+      "numStars": 189,
+      "averageStars": 4
+    },
+    {
+      "id": 85,
+      "name": "Late Night Fitness",
+      "category": "gym",
+      "location": "-122.226949,37.815231",
+      "numCheckins": 979,
+      "numStars": 494,
+      "averageStars": 1
+    },
+    {
+      "id": 86,
+      "name": "The Little Coffee Shop",
+      "category": "retail",
+      "location": "-122.270083,37.861126",
+      "numCheckins": 320,
+      "numStars": 311,
+      "averageStars": 1
+    },
+    {
+      "id": 87,
+      "name": "Monique's Boutique",
+      "category": "retail",
+      "location": "-121.862728,37.6631486",
+      "numCheckins": 710,
+      "numStars": 2774,
+      "averageStars": 4
+    },
+    {
+      "id": 88,
+      "name": "The Boar's Head",
+      "category": "bar",
+      "location": "-121.849663,37.667338",
+      "numCheckins": 147,
+      "numStars": 49,
+      "averageStars": 0
+    },
+    {
+      "id": 89,
+      "name": "Boardwalk Sunglasses",
+      "category": "retail",
+      "location": "-122.024679,37.538738",
+      "numCheckins": 342,
+      "numStars": 488,
+      "averageStars": 1
+    },
+    {
+      "id": 90,
+      "name": "City Styles",
+      "category": "hair",
+      "location": "-122.2715332,37.8792662",
+      "numCheckins": 993,
+      "numStars": 912,
+      "averageStars": 1
+    },
+    {
+      "id": 91,
+      "name": "Chez Pierre",
+      "category": "restaurant",
+      "location": "-122.089049,37.36696999999999",
+      "numCheckins": 855,
+      "numStars": 2366,
+      "averageStars": 3
+    },
+    {
+      "id": 92,
+      "name": "Total Hair and More",
+      "category": "hair",
+      "location": "-121.96178,37.522428",
+      "numCheckins": 320,
+      "numStars": 493,
+      "averageStars": 2
+    },
+    {
+      "id": 93,
+      "name": "Downtown Sporting Goods Supply",
+      "category": "retail",
+      "location": "-121.884051,37.711885",
+      "numCheckins": 353,
+      "numStars": 874,
+      "averageStars": 2
+    },
+    {
+      "id": 94,
+      "name": "The Sportsman's Inn",
+      "category": "bar",
+      "location": "-121.9588068,37.5343786",
+      "numCheckins": 39,
+      "numStars": 75,
+      "averageStars": 2
+    },
+    {
+      "id": 95,
+      "name": "Sunset Diner",
+      "category": "restaurant",
+      "location": "-122.2678109,37.7823187",
+      "numCheckins": 20,
+      "numStars": 63,
+      "averageStars": 3
+    },
+    {
+      "id": 96,
+      "name": "The Corner Pub",
+      "category": "bar",
+      "location": "-122.100957,37.409802",
+      "numCheckins": 487,
+      "numStars": 695,
+      "averageStars": 1
+    },
+    {
+      "id": 97,
+      "name": "O'Neill's Irish Bar",
+      "category": "bar",
+      "location": "-122.2195409,37.820272",
+      "numCheckins": 460,
+      "numStars": 274,
+      "averageStars": 1
+    },
+    {
+      "id": 98,
+      "name": "A-Z Hardware Supply",
+      "category": "retail",
+      "location": "-122.2632462,37.8830528",
+      "numCheckins": 921,
+      "numStars": 4169,
+      "averageStars": 5
+    },
+    {
+      "id": 99,
+      "name": "Cut and Curl",
+      "category": "hair",
+      "location": "-122.0796285,37.3996523",
+      "numCheckins": 816,
+      "numStars": 1277,
+      "averageStars": 2
+    },
+    {
+      "id": 100,
+      "name": "Fast Burger",
+      "category": "restaurant",
+      "location": "-122.0917029,37.6678718",
+      "numCheckins": 61,
+      "numStars": 60,
+      "averageStars": 1
+    },
+    {
+      "id": 101,
+      "name": "City Crossfit",
+      "category": "gym",
+      "location": "-122.007419,37.55069599999999",
+      "numCheckins": 337,
+      "numStars": 324,
+      "averageStars": 1
+    },
+    {
+      "id": 102,
+      "name": "Amber's Desserts and More",
+      "category": "cafe",
+      "location": "-122.1334006,37.7238372",
+      "numCheckins": 693,
+      "numStars": 2857,
+      "averageStars": 4
+    },
+    {
+      "id": 103,
+      "name": "Stan's Auto Parts",
+      "category": "retail",
+      "location": "-122.085039,37.6990989",
+      "numCheckins": 980,
+      "numStars": 3572,
+      "averageStars": 4
+    },
+    {
+      "id": 104,
+      "name": "The Dive Bar",
+      "category": "bar",
+      "location": "-122.216252,37.829801",
+      "numCheckins": 640,
+      "numStars": 382,
+      "averageStars": 1
+    },
+    {
+      "id": 105,
+      "name": "Rinse Salon",
+      "category": "hair",
+      "location": "-122.0133239,37.5534511",
+      "numCheckins": 195,
+      "numStars": 850,
+      "averageStars": 4
+    },
+    {
+      "id": 106,
+      "name": "Viva Bubble Tea",
+      "category": "cafe",
+      "location": "-122.268645,37.764288",
+      "numCheckins": 886,
+      "numStars": 1073,
+      "averageStars": 1
+    },
+    {
+      "id": 107,
+      "name": "Thompson's Bicycle Sales and Repair",
+      "category": "retail",
+      "location": "-121.7952093,37.6958861",
+      "numCheckins": 52,
+      "numStars": 227,
+      "averageStars": 4
+    },
+    {
+      "id": 108,
+      "name": "Yarn and More",
+      "category": "retail",
+      "location": "-122.1996064,37.8387892",
+      "numCheckins": 355,
+      "numStars": 869,
+      "averageStars": 2
+    },
+    {
+      "id": 109,
+      "name": "365 Korean BBQ",
+      "category": "restaurant",
+      "location": "-121.791712,37.689729",
+      "numCheckins": 88,
+      "numStars": 174,
+      "averageStars": 2
+    },
+    {
+      "id": 110,
+      "name": "Pizza Nova",
+      "category": "restaurant",
+      "location": "-122.155653,37.6950209",
+      "numCheckins": 626,
+      "numStars": 1382,
+      "averageStars": 2
+    },
+    {
+      "id": 111,
+      "name": "Ramon's Locks and Keys",
+      "category": "retail",
+      "location": "-122.255689,37.739659",
+      "numCheckins": 617,
+      "numStars": 1018,
+      "averageStars": 2
+    },
+    {
+      "id": 112,
+      "name": "The Pizza Grotto",
+      "category": "restaurant",
+      "location": "-121.9926731,37.5420236",
+      "numCheckins": 298,
+      "numStars": 74,
+      "averageStars": 0
+    },
+    {
+      "id": 113,
+      "name": "The Fisherman's Catch",
+      "category": "restaurant",
+      "location": "-122.0122099,37.5538472",
+      "numCheckins": 921,
+      "numStars": 447,
+      "averageStars": 0
+    },
+    {
+      "id": 114,
+      "name": "Express Coffee and Tea",
+      "category": "cafe",
+      "location": "-122.026806,37.563275",
+      "numCheckins": 376,
+      "numStars": 1303,
+      "averageStars": 3
+    },
+    {
+      "id": 115,
+      "name": "Salon Roberta",
+      "category": "hair",
+      "location": "-122.2846077,37.8692812",
+      "numCheckins": 672,
+      "numStars": 2686,
+      "averageStars": 4
+    },
+    {
+      "id": 116,
+      "name": "The Famous Steak House",
+      "category": "restaurant",
+      "location": "-122.2934965,37.8685768",
+      "numCheckins": 38,
+      "numStars": 21,
+      "averageStars": 1
+    },
+    {
+      "id": 117,
+      "name": "Monty's Bar",
+      "category": "bar",
+      "location": "-122.081085,37.622266",
+      "numCheckins": 348,
+      "numStars": 1155,
+      "averageStars": 3
+    },
+    {
+      "id": 118,
+      "name": "The Venetian",
+      "category": "restaurant",
+      "location": "-122.25143,37.736838",
+      "numCheckins": 270,
+      "numStars": 1062,
+      "averageStars": 4
+    },
+    {
+      "id": 119,
+      "name": "Corner Cafe",
+      "category": "cafe",
+      "location": "-122.2090177,37.7906226",
+      "numCheckins": 178,
+      "numStars": 169,
+      "averageStars": 1
+    },
+    {
+      "id": 120,
+      "name": "Tropical Taste Caribbean",
+      "category": "restaurant",
+      "location": "-122.0528926,37.6053127",
+      "numCheckins": 382,
+      "numStars": 1462,
+      "averageStars": 4
+    },
+    {
+      "id": 121,
+      "name": "The Gin Club",
+      "category": "bar",
+      "location": "-122.249552,37.83019",
+      "numCheckins": 968,
+      "numStars": 2384,
+      "averageStars": 2
+    },
+    {
+      "id": 122,
+      "name": "Sammy's Golf Supplies",
+      "category": "retail",
+      "location": "-122.11392,37.697031",
+      "numCheckins": 247,
+      "numStars": 677,
+      "averageStars": 3
+    },
+    {
+      "id": 123,
+      "name": "Bierkeller",
+      "category": "bar",
+      "location": "-122.178871,37.799782",
+      "numCheckins": 309,
+      "numStars": 68,
+      "averageStars": 0
+    },
+    {
+      "id": 124,
+      "name": "TODO",
+      "category": "bar",
+      "location": "-121.9110367,37.713863",
+      "numCheckins": 936,
+      "numStars": 2570,
+      "averageStars": 3
+    },
+    {
+      "id": 125,
+      "name": "24 Hour Work Out Center",
+      "category": "gym",
+      "location": "-122.066458,37.647646",
+      "numCheckins": 627,
+      "numStars": 1146,
+      "averageStars": 2
+    },
+    {
+      "id": 126,
+      "name": "The Imperial",
+      "category": "bar",
+      "location": "-121.92052,37.526895",
+      "numCheckins": 79,
+      "numStars": 237,
+      "averageStars": 3
+    },
+    {
+      "id": 127,
+      "name": "Shoes Direct",
+      "category": "retail",
+      "location": "-122.057019,37.717206",
+      "numCheckins": 452,
+      "numStars": 1198,
+      "averageStars": 3
+    },
+    {
+      "id": 128,
+      "name": "New York, New York",
+      "category": "restaurant",
+      "location": "-121.986278,38.262862",
+      "numCheckins": 930,
+      "numStars": 3674,
+      "averageStars": 4
+    },
+    {
+      "id": 129,
+      "name": "The Green",
+      "category": "bar",
+      "location": "-122.0190805,37.6085241",
+      "numCheckins": 491,
+      "numStars": 1749,
+      "averageStars": 4
+    },
+    {
+      "id": 130,
+      "name": "Pure Gym",
+      "category": "gym",
+      "location": "-122.152332,37.685391",
+      "numCheckins": 364,
+      "numStars": 1506,
+      "averageStars": 4
+    },
+    {
+      "id": 131,
+      "name": "Maroush",
+      "category": "restaurant",
+      "location": "-122.2252044,37.8019867",
+      "numCheckins": 504,
+      "numStars": 456,
+      "averageStars": 1
+    },
+    {
+      "id": 132,
+      "name": "The Hustle",
+      "category": "gym",
+      "location": "-121.957693,37.540659",
+      "numCheckins": 187,
+      "numStars": 872,
+      "averageStars": 5
+    },
+    {
+      "id": 133,
+      "name": "The Tea Shoppe",
+      "category": "cafe",
+      "location": "-122.106795,38.198231",
+      "numCheckins": 568,
+      "numStars": 162,
+      "averageStars": 0
+    },
+    {
+      "id": 134,
+      "name": "Martha's Candy",
+      "category": "retail",
+      "location": "-121.739175,37.679629",
+      "numCheckins": 74,
+      "numStars": 287,
+      "averageStars": 4
+    },
+    {
+      "id": 135,
+      "name": "The Old Station",
+      "category": "bar",
+      "location": "-122.1119208,37.6368362",
+      "numCheckins": 850,
+      "numStars": 2698,
+      "averageStars": 3
+    },
+    {
+      "id": 136,
+      "name": "All Day Wellness",
+      "category": "gym",
+      "location": "-122.296661,37.869121",
+      "numCheckins": 33,
+      "numStars": 90,
+      "averageStars": 3
+    },
+    {
+      "id": 137,
+      "name": "The Fox",
+      "category": "bar",
+      "location": "-122.102691,37.636421",
+      "numCheckins": 798,
+      "numStars": 1222,
+      "averageStars": 2
+    },
+    {
+      "id": 138,
+      "name": "Stacey's Country Bakehouse",
+      "category": "restaurant",
+      "location": "-122.195447,37.774636",
+      "numCheckins": 170,
+      "numStars": 724,
+      "averageStars": 4
+    },
+    {
+      "id": 139,
+      "name": "Lebanese House",
+      "category": "restaurant",
+      "location": "-121.7340865,37.6841886",
+      "numCheckins": 829,
+      "numStars": 334,
+      "averageStars": 0
+    },
+    {
+      "id": 140,
+      "name": "Crossfit 89",
+      "category": "gym",
+      "location": "-122.019375,37.544602",
+      "numCheckins": 71,
+      "numStars": 321,
+      "averageStars": 5
+    },
+    {
+      "id": 141,
+      "name": "Estelle's",
+      "category": "cafe",
+      "location": "-121.9881106,37.5497744",
+      "numCheckins": 170,
+      "numStars": 184,
+      "averageStars": 1
+    },
+    {
+      "id": 142,
+      "name": "Kabob House",
+      "category": "restaurant",
+      "location": "-122.046613,37.602458",
+      "numCheckins": 342,
+      "numStars": 1086,
+      "averageStars": 3
+    },
+    {
+      "id": 143,
+      "name": "The Brickyard",
+      "category": "cafe",
+      "location": "-122.071967,37.5927298",
+      "numCheckins": 856,
+      "numStars": 606,
+      "averageStars": 4
+    },
+    {
+      "id": 144,
+      "name": "Railway Fitness",
+      "category": "gym",
+      "location": "-122.0341169,37.6788246",
+      "numCheckins": 343,
+      "numStars": 724,
+      "averageStars": 2
+    },
+    {
+      "id": 145,
+      "name": "Indian Garden",
+      "category": "restaurant",
+      "location": "-122.28256,37.897449",
+      "numCheckins": 406,
+      "numStars": 379,
+      "averageStars": 1
+    },
+    {
+      "id": 146,
+      "name": "TODO",
+      "category": "The Old Courthouse",
+      "location": "-122.286565,37.859962",
+      "numCheckins": 829,
+      "numStars": 1079,
+      "averageStars": 1
+    },
+    {
+      "id": 147,
+      "name": "Cat Cafe and Rescue Center",
+      "category": "cafe",
+      "location": "-121.7680214,37.6805701",
+      "numCheckins": 242,
+      "numStars": 697,
+      "averageStars": 3
+    },
+    {
+      "id": 148,
+      "name": "La Maison",
+      "category": "restaurant",
+      "location": "-121.9995133,37.5583435",
+      "numCheckins": 696,
+      "numStars": 200,
+      "averageStars": 0
+    },
+    {
+      "id": 149,
+      "name": "Royal Thai",
+      "category": "restaurant",
+      "location": "-122.276749,37.817176",
+      "numCheckins": 546,
+      "numStars": 1833,
+      "averageStars": 3
+    },
+    {
+      "id": 150,
+      "name": "Armando's",
+      "category": "bar",
+      "location": "-121.979386,37.576224",
+      "numCheckins": 46,
+      "numStars": 128,
+      "averageStars": 3
+    },
+    {
+      "id": 151,
+      "name": "The Griffin",
+      "category": "bar",
+      "location": "-122.1311145,37.6949779",
+      "numCheckins": 989,
+      "numStars": 3682,
+      "averageStars": 4
+    },
+    {
+      "id": 152,
+      "name": "Karl Neumann Brewing",
+      "category": "bar",
+      "location": "-122.047933,37.53467699999999",
+      "numCheckins": 933,
+      "numStars": 1806,
+      "averageStars": 2
+    },
+    {
+      "id": 153,
+      "name": "The Beauty Works",
+      "category": "hair",
+      "location": "-122.021195,37.560886",
+      "numCheckins": 258,
+      "numStars": 830,
+      "averageStars": 3
+    },
+    {
+      "id": 154,
+      "name": "Jyoti's Vegetarian",
+      "category": "restaurant",
+      "location": "-121.926948,37.5192549",
+      "numCheckins": 25,
+      "numStars": 51,
+      "averageStars": 2
+    },
+    {
+      "id": 155,
+      "name": "Salon Amelie",
+      "category": "hair",
+      "location": "-122.2508859,37.8243896",
+      "numCheckins": 145,
+      "numStars": 39,
+      "averageStars": 0
+    },
+    {
+      "id": 156,
+      "name": "The T-Shirt Factory",
+      "category": "retail",
+      "location": "-122.2662512,37.87633599999999",
+      "numCheckins": 462,
+      "numStars": 2170,
+      "averageStars": 5
+    },
+    {
+      "id": 157,
+      "name": "The Toy Emporium",
+      "category": "retail",
+      "location": "-122.284908,37.857695",
+      "numCheckins": 645,
+      "numStars": 1803,
+      "averageStars": 3
+    },
+    {
+      "id": 158,
+      "name": "Short Cuts",
+      "category": "hair",
+      "location": "-122.1336681,37.7168246",
+      "numCheckins": 81,
+      "numStars": 229,
+      "averageStars": 3
+    },
+    {
+      "id": 159,
+      "name": "Retrogames",
+      "category": "retail",
+      "location": "-122.2688057,37.835259",
+      "numCheckins": 120,
+      "numStars": 261,
+      "averageStars": 2
+    },
+    {
+      "id": 160,
+      "name": "The Garden Depot",
+      "category": "retail",
+      "location": "-122.290025,37.8683866",
+      "numCheckins": 142,
+      "numStars": 401,
+      "averageStars": 3
+    },
+    {
+      "id": 161,
+      "name": "Downtown Breakfast",
+      "category": "cafe",
+      "location": "-122.262537,37.875242",
+      "numCheckins": 144,
+      "numStars": 459,
+      "averageStars": 3
+    },
+    {
+      "id": 162,
+      "name": "Middlefield Plumbing Supplies",
+      "category": "retail",
+      "location": "-122.266668,37.849964",
+      "numCheckins": 883,
+      "numStars": 730,
+      "averageStars": 1
+    },
+    {
+      "id": 163,
+      "name": "Chez Marcel",
+      "category": "restaurant",
+      "location": "-122.1460405,37.7159947",
+      "numCheckins": 939,
+      "numStars": 2874,
+      "averageStars": 3
+    },
+    {
+      "id": 164,
+      "name": "The Plant Place",
+      "category": "retail",
+      "location": "-121.9236162,37.5203849",
+      "numCheckins": 842,
+      "numStars": 562,
+      "averageStars": 1
+    },
+    {
+      "id": 165,
+      "name": "Carl's Collectibles",
+      "category": "retail",
+      "location": "-122.042969,37.688608",
+      "numCheckins": 475,
+      "numStars": 152,
+      "averageStars": 0
+    },
+    {
+      "id": 166,
+      "name": "Pampered Pooch Dog Spa",
+      "category": "retail",
+      "location": "-122.248422,37.8064419",
+      "numCheckins": 2,
+      "numStars": 6,
+      "averageStars": 3
+    },
+    {
+      "id": 167,
+      "name": "Sun and Stars Cafe",
+      "category": "cafe",
+      "location": "-122.021196,37.976075",
+      "numCheckins": 2,
+      "numStars": 7,
+      "averageStars": 4
+    },
+    {
+      "id": 168,
+      "name": "Brannigan's",
+      "category": "cafe",
+      "location": "-122.1576841,37.7017199",
+      "numCheckins": 566,
+      "numStars": 1020,
+      "averageStars": 2
+    },
+    {
+      "id": 169,
+      "name": "Village Gym",
+      "category": "gym",
+      "location": "-122.255305,37.823278",
+      "numCheckins": 559,
+      "numStars": 128,
+      "averageStars": 0
+    },
+    {
+      "id": 170,
+      "name": "Speed Cycle",
+      "category": "gym",
+      "location": "-122.2641515,37.7774427",
+      "numCheckins": 499,
+      "numStars": 1174,
+      "averageStars": 2
+    },
+    {
+      "id": 171,
+      "name": "TODO",
+      "category": "hair",
+      "location": "-122.2442037,37.8588565",
+      "numCheckins": 304,
+      "numStars": 961,
+      "averageStars": 3
+    },
+    {
+      "id": 172,
+      "name": "Coco's Hair",
+      "category": "hair",
+      "location": "-121.8472135,37.7203643",
+      "numCheckins": 92,
+      "numStars": 194,
+      "averageStars": 2
+    },
+    {
+      "id": 173,
+      "name": "Sonic Barbers",
+      "category": "hair",
+      "location": "-121.77304,37.655627",
+      "numCheckins": 122,
+      "numStars": 388,
+      "averageStars": 3
+    },
+    {
+      "id": 174,
+      "name": "Daleside Fitness",
+      "category": "gym",
+      "location": "-122.065331,37.669022",
+      "numCheckins": 78,
+      "numStars": 291,
+      "averageStars": 4
+    },
+    {
+      "id": 175,
+      "name": "24 Hour Training",
+      "category": "gym",
+      "location": "-122.021022,37.551937",
+      "numCheckins": 399,
+      "numStars": 514,
+      "averageStars": 1
+    },
+    {
+      "id": 176,
+      "name": "The Bear and Bull",
+      "category": "bar",
+      "location": "-122.2237384,37.8619142",
+      "numCheckins": 465,
+      "numStars": 299,
+      "averageStars": 1
+    },
+    {
+      "id": 177,
+      "name": "Top Hair",
+      "category": "hair",
+      "location": "-122.0672661,37.6324522",
+      "numCheckins": 447,
+      "numStars": 1562,
+      "averageStars": 3
+    },
+    {
+      "id": 178,
+      "name": "Fitness on 5",
+      "category": "gym",
+      "location": "-122.029517,37.608898",
+      "numCheckins": 474,
+      "numStars": 1237,
+      "averageStars": 3
+    },
+    {
+      "id": 179,
+      "name": "The Breakfast Corner",
+      "category": "cafe",
+      "location": "-121.9288008,37.4711524",
+      "numCheckins": 10,
+      "numStars": 12,
+      "averageStars": 1
+    },
+    {
+      "id": 180,
+      "name": "Superfit",
+      "category": "gym",
+      "location": "-122.252442,37.854131",
+      "numCheckins": 424,
+      "numStars": 1144,
+      "averageStars": 3
+    },
+    {
+      "id": 181,
+      "name": "Silver's Gym",
+      "category": "gym",
+      "location": "-122.266155,37.879558",
+      "numCheckins": 895,
+      "numStars": 1717,
+      "averageStars": 2
+    },
+    {
+      "id": 182,
+      "name": "The Buzz Coffee Roasters",
+      "category": "cafe",
+      "location": "-122.256999,37.8880229",
+      "numCheckins": 439,
+      "numStars": 2189,
+      "averageStars": 5
+    },
+    {
+      "id": 183,
+      "name": "Bianca's General Store",
+      "category": "retail",
+      "location": "-121.9246934,37.4924962",
+      "numCheckins": 587,
+      "numStars": 672,
+      "averageStars": 1
+    },
+    {
+      "id": 184,
+      "name": "City Restaurant Supply",
+      "category": "retail",
+      "location": "-121.9855489,37.5384851",
+      "numCheckins": 281,
+      "numStars": 176,
+      "averageStars": 1
+    },
+    {
+      "id": 185,
+      "name": "Hair by Merlene",
+      "category": "hair",
+      "location": "-121.9558629,37.537485",
+      "numCheckins": 441,
+      "numStars": 546,
+      "averageStars": 1
+    },
+    {
+      "id": 186,
+      "name": "Chicago Pizza",
+      "category": "restaurant",
+      "location": "-121.908019,37.661416",
+      "numCheckins": 592,
+      "numStars": 2476,
+      "averageStars": 4
+    },
+    {
+      "id": 187,
+      "name": "The Gentleman's Barber",
+      "category": "hair",
+      "location": "-122.156506,37.695385",
+      "numCheckins": 357,
+      "numStars": 1106,
+      "averageStars": 3
+    },
+    {
+      "id": 188,
+      "name": "Quick Eats",
+      "category": "restaurant",
+      "location": "-122.2757415,37.8589787",
+      "numCheckins": 356,
+      "numStars": 334,
+      "averageStars": 1
+    },
+    {
+      "id": 189,
+      "name": "The Hot Potato",
+      "category": "restaurant",
+      "location": "-122.111063,37.648362",
+      "numCheckins": 279,
+      "numStars": 71,
+      "averageStars": 0
+    },
+    {
+      "id": 190,
+      "name": "The Mug Shoppe",
+      "category": "retail",
+      "location": "-122.1349653,37.7587409",
+      "numCheckins": 155,
+      "numStars": 339,
+      "averageStars": 2
+    },
+    {
+      "id": 191,
+      "name": "Jameson's",
+      "category": "bar",
+      "location": "-122.239441,37.8014543",
+      "numCheckins": 614,
+      "numStars": 1061,
+      "averageStars": 2
+    },
+    {
+      "id": 192,
+      "name": "The Whiskey Bar",
+      "category": "bar",
+      "location": "-122.108047,37.70656",
+      "numCheckins": 819,
+      "numStars": 3288,
+      "averageStars": 4
+    },
+    {
+      "id": 193,
+      "name": "Grilled Cheese Express",
+      "category": "restaurant",
+      "location": "-122.167775,37.767338",
+      "numCheckins": 395,
+      "numStars": 1177,
+      "averageStars": 3
+    },
+    {
+      "id": 194,
+      "name": "Rob's Burgers",
+      "category": "restaurant",
+      "location": "-122.0560558,37.6410274",
+      "numCheckins": 288,
+      "numStars": 436,
+      "averageStars": 2
+    },
+    {
+      "id": 195,
+      "name": "Revolution Coffee House",
+      "category": "cafe",
+      "location": "-122.176955,37.745714",
+      "numCheckins": 596,
+      "numStars": 496,
+      "averageStars": 1
+    },
+    {
+      "id": 196,
+      "name": "Lloyd's Shoes",
+      "category": "retail",
+      "location": "-121.8244023,37.9930596",
+      "numCheckins": 775,
+      "numStars": 1041,
+      "averageStars": 1
+    },
+    {
+      "id": 197,
+      "name": "The Curry House",
+      "category": "restaurant",
+      "location": "-122.072898,37.626108",
+      "numCheckins": 538,
+      "numStars": 2677,
+      "averageStars": 5
+    },
+    {
+      "id": 198,
+      "name": "Champions Sports Bar",
+      "category": "bar",
+      "location": "-121.7409406,37.6871239",
+      "numCheckins": 435,
+      "numStars": 524,
+      "averageStars": 1
+    },
+    {
+      "id": 199,
+      "name": "The Old Farmhouse",
+      "category": "bar",
+      "location": "-122.026342,37.5742662",
+      "numCheckins": 457,
+      "numStars": 1828,
+      "averageStars": 4
+    },
+    {
+      "id": 200,
+      "name": "Katia's Kitchen",
+      "category": "restaurant",
+      "location": "-122.2349598,37.7356811",
+      "numCheckins": 359,
+      "numStars": 1021,
+      "averageStars": 3
+    },
+    {
+      "id": 201,
+      "name": "The Bus Stop",
+      "category": "cafe",
+      "location": "-122.175261,37.75841",
+      "numCheckins": 359,
+      "numStars": 263,
+      "averageStars": 1
+    },
+    {
+      "id": 202,
+      "name": "Buzz Cuts",
+      "category": "hair",
+      "location": "-122.200969,37.769842",
+      "numCheckins": 604,
+      "numStars": 2591,
+      "averageStars": 4
+    },
+    {
+      "id": 203,
+      "name": "Astronaut Bar",
+      "category": "bar",
+      "location": "-122.0104815,37.5376257",
+      "numCheckins": 812,
+      "numStars": 812,
+      "averageStars": 1
+    },
+    {
+      "id": 204,
+      "name": "Sip and Savor",
+      "category": "bar",
+      "location": "-122.208322,37.809976",
+      "numCheckins": 144,
+      "numStars": 410,
+      "averageStars": 3
+    },
+    {
+      "id": 205,
+      "name": "Kasper's",
+      "category": "restaurant",
+      "location": "-122.0765151,37.5727239",
+      "numCheckins": 986,
+      "numStars": 3980,
+      "averageStars": 4
+    },
+    {
+      "id": 206,
+      "name": "Jake's Skateboard Shop",
+      "category": "retail",
+      "location": "-122.259581,37.8754289",
+      "numCheckins": 602,
+      "numStars": 2666,
+      "averageStars": 4
+    },
+    {
+      "id": 207,
+      "name": "Corner Pharmacy",
+      "category": "retail",
+      "location": "-122.07283,37.5752359",
+      "numCheckins": 250,
+      "numStars": 688,
+      "averageStars": 3
+    },
+    {
+      "id": 208,
+      "name": "TODO",
+      "category": "hair",
+      "location": "-122.124605,37.708643",
+      "numCheckins": 498,
+      "numStars": 1233,
+      "averageStars": 2
+    },
+    {
+      "id": 209,
+      "name": "The King's Head",
+      "category": "bar",
+      "location": "-122.235478,37.816922",
+      "numCheckins": 583,
+      "numStars": 1743,
+      "averageStars": 3
+    },
+    {
+      "id": 210,
+      "name": "Downtown Fish and Chips",
+      "category": "cafe",
+      "location": "-122.1773575,37.7724559",
+      "numCheckins": 735,
+      "numStars": 2339,
+      "averageStars": 3
+    },
+    {
+      "id": 211,
+      "name": "The Cottage Bakery and Restaurant",
+      "category": "restaurant",
+      "location": "-122.2926347,37.87654149999999",
+      "numCheckins": 682,
+      "numStars": 1923,
+      "averageStars": 3
+    },
+    {
+      "id": 212,
+      "name": "Salon at the Park",
+      "category": "hair",
+      "location": "-122.019351,37.601043",
+      "numCheckins": 385,
+      "numStars": 123,
+      "averageStars": 0
+    },
+    {
+      "id": 213,
+      "name": "Tortilla - Burritos & Tacos",
+      "category": "restaurant",
+      "location": "-122.0648031,37.60187639999999",
+      "numCheckins": 208,
+      "numStars": 319,
+      "averageStars": 2
+    },
+    {
+      "id": 214,
+      "name": "The Local Tap House",
+      "category": "bar",
+      "location": "-122.0567745,37.5609018",
+      "numCheckins": 838,
+      "numStars": 3344,
+      "averageStars": 4
+    },
+    {
+      "id": 215,
+      "name": "Yoga Flow",
+      "category": "gym",
+      "location": "-122.687717,38.367468",
+      "numCheckins": 834,
+      "numStars": 963,
+      "averageStars": 1
+    }
+  ]
 }
