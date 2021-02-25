@@ -8,6 +8,7 @@
     "load": "node src/utils/dataloader.js --",
     "lint": "./node_modules/eslint/bin/eslint.js src",
     "start": "node ./src/server.js",
+    "checkinreceiver": "node ./src/checkinreceiver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/redislabs-training/node-js-crash-course#readme",
   "dependencies": {
     "better-config": "^1.2.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ioredis": "^4.22.0",
