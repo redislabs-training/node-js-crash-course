@@ -14,5 +14,5 @@ app.use('/api', routes);
 
 const port = config.get('application.port');
 app.listen(port, () => {
-  console.log(`Application listening on port ${port}.`);
+  logger.info(`Application listening on port ${port}.`);
 });
