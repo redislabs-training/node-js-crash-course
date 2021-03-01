@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const apiErrorReporter = require('../utils/apierrorreporter');
 
 router.get(
-  '/checkin/:id',
+  '/checkins/:startTime/:endTime',
   async (req, res, next) => res.status(200).json({ status: 'TODO' }),
 );
 
