@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 const checkinStreamKey = redis.getKeyName('checkins');
 const maxStreamLength = config.get('checkinReceiver.maxStreamLength');
 
-// TODO VALIDATION CODE!!!!
 app.post(
   '/api/checkin',
   [
