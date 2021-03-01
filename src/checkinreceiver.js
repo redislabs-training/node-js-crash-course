@@ -27,7 +27,7 @@ app.post(
     body().isObject(),
     body('userId').isInt({ min: 1 }),
     body('locationId').isInt({ min: 1 }),
-    body('starRating').isInt({ min: 1, max: 5 }),
+    body('starRating').isInt({ min: 0, max: 5 }),
     apiErrorReporter,
   ],
   async (req, res) => {
