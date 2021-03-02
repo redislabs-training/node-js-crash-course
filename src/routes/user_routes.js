@@ -1,14 +1,23 @@
 const router = require('express').Router();
+const { param } = require('express-validator');
 const apiErrorReporter = require('../utils/apierrorreporter');
 
 router.get(
   '/user/:userId',
+  [
+    param('userId').isInt({ min: 1 }),
+    apiErrorReporter,
+  ],
   async (req, res, next) => res.status(200).json({ status: 'TODO' }),
 );
 
 // Get user by email address.
 router.get(
   '/user/email/:emailAddress',
+  [
+    param('emailAddress').isEmail(),
+    apiErrorReporter,
+  ],
   async (req, res, next) => res.status(200).json({ status: 'TODO' }),
 );
 
