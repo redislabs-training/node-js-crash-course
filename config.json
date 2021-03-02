@@ -5,7 +5,6 @@
   },
   "checkinReceiver": {
     "port": 8082,
-    "logLevel": "debug",
     "maxStreamLength": 500000
   },
   "redis": {
