@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const { param } = require('express-validator');
 const apiErrorReporter = require('../utils/apierrorreporter');
+const redis = require('../utils/redisclient');
+
+const redisClient = redis.getClient();
 
 router.get(
   '/user/:userId',
@@ -8,7 +11,15 @@ router.get(
     param('userId').isInt({ min: 1 }),
     apiErrorReporter,
   ],
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res, next) => {
+    const { userId } = req.params;
+    const userKey = redis.getKeyName('users', userId);
+
+    const userDetail = await redisClient.hgetall(userKey);
+    delete userDetail.password;
+
+    res.status(200).json(userDetail);
+  },
 );
 
 // Get user by email address.
