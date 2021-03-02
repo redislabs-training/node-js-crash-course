@@ -1,6 +1,8 @@
 const winston = require('winston');
 const config = require('better-config');
 
+config.set('../../config.json');
+
 const logger = winston.createLogger({
   level: config.get('logLevel'),
   transports: [
