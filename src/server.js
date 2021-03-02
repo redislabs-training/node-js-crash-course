@@ -12,6 +12,12 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(cors());
 app.use('/api', routes);
 
+// Check for required environment variables.
+if (process.env.WEATHER_API_KEY === undefined) {
+  console.error('Environment variable WEATHER_API_KEY must be set!');
+  process.exit(1);
+}
+
 const port = config.get('application.port');
 app.listen(port, () => {
   logger.info(`Application listening on port ${port}.`);
