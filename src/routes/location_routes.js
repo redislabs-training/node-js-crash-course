@@ -1,6 +1,14 @@
+const fetch = require('node-fetch');
 const router = require('express').Router();
 const { param, query } = require('express-validator');
+const logger = require('../utils/logger');
+const redis = require('../utils/redisclient');
 const apiErrorReporter = require('../utils/apierrorreporter');
+
+const CACHE_TIME = 60 * 60; // An hour in seconds.
+const redisClient = redis.getClient();
+
+const getWeatherKey = (locationId) => redis.getKeyName('weather', locationId);
 
 // This should also optionally take a withDetails request parameter.
 router.get(
@@ -46,7 +54,40 @@ router.get(
     param('locationId').isInt({ min: 1 }),
     apiErrorReporter,
   ],
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res, next) => {
+    const { locationId } = req.params;
+
+    const cachedWeather = await redisClient.get(getWeatherKey(locationId));
+
+    if (cachedWeather) {
+      // Cache hit!
+      logger.debug(`Cache hit for location ${locationId} weather.`);
+      res.status(200).json(JSON.parse(cachedWeather));
+    } else {
+      // Cache miss :(
+      logger.debug(`Cache miss for location ${locationId} weather.`);
+      next();
+    }
+  },
+  async (req, res, next) => {
+    const { locationId } = req.params;
+
+    // Get the co-ordinates for this location from Redis.
+    const locationKey = redis.getKeyName('locations', locationId);
+
+    // Get lng,lat coordinates from Redis.
+    const coords = await redisClient.hget(locationKey, 'location');
+    const [lng, lat] = coords.split(',');
+
+    // Call the API.
+    const apiResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}`);
+    const weatherJSON = await apiResponse.json();
+
+    // Store the results in Redis and set TTL.
+    redisClient.setex(getWeatherKey(locationId), CACHE_TIME, JSON.stringify(weatherJSON));
+
+    res.status(200).json(weatherJSON);
+  },
 );
 
 module.exports = router;
