@@ -26,7 +26,7 @@ const runCheckinProcessor = async () => {
 
       const checkin = {
         id: checkinData[0],
-        timestamp: checkinData[0].split('-')[0]
+        timestamp: checkinData[0].split('-')[0],
       };
 
       for (let n = 0; n < fieldNamesAndValues.length; n += 2) {
@@ -48,7 +48,9 @@ const runCheckinProcessor = async () => {
       pipeline.hincrby(locationKey, 'numCheckins', 1);
       pipeline.hincrby(locationKey, 'numStars', checkin.starRating);
 
+      /* eslint-disable no-await-in-loop */
       const responses = await pipeline.exec();
+      /* eslint-enable */
       console.log(responses);
 
       // TODO calculate new averageStars...
