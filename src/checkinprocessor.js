@@ -11,7 +11,6 @@ const runCheckinProcessor = async () => {
     lastIdRead = 0;
   }
 
-  // TODO logger
   logger.info(`Reading stream from last ID ${lastIdRead}.`);
 
   /* eslint-disable no-constant-condition */
@@ -27,6 +26,7 @@ const runCheckinProcessor = async () => {
 
       const checkin = {
         id: checkinData[0],
+        timestamp: checkinData[0].split('-')[0]
       };
 
       for (let n = 0; n < fieldNamesAndValues.length; n += 2) {
@@ -35,12 +35,23 @@ const runCheckinProcessor = async () => {
         checkin[k] = v;
       }
 
-      // * Update user lastCheckin
-      // * Update user lastSeenAt
-      // * Update user numCheckins
-      // * Update location numCheckins
-      // * Update location numStars
-      // * Update location averageStars
+      const userKey = redis.getKeyName('users', checkin.userId);
+      const locationKey = redis.getKeyName('locations', checkin.locationId);
+
+      logger.debug(`Updating user ${userKey}`);
+      logger.debug(`Updating location ${locationKey}`);
+
+      const pipeline = redisClient.pipeline();
+
+      pipeline.hset(userKey, 'lastCheckin', checkin.timestamp, 'lastSeenAt', checkin.locationId);
+      pipeline.hincrby(userKey, 'numCheckins', 1);
+      pipeline.hincrby(locationKey, 'numCheckins', 1);
+      pipeline.hincrby(locationKey, 'numStars', checkin.starRating);
+
+      const responses = await pipeline.exec();
+      console.log(responses);
+
+      // TODO calculate new averageStars...
 
       lastIdRead = checkin.id;
       redisClient.set(checkinProcessorIdKey, lastIdRead);
