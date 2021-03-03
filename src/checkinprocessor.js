@@ -6,16 +6,6 @@ const runCheckinProcessor = async () => {
   const checkinStreamKey = redis.getKeyName('checkins');
   const checkinProcessorIdKey = redis.getKeyName('checkinprocessor', 'lastid');
 
-  // This needs to XREAD from the checkins stream, and perform the
-  // following actions for each checkin read:
-  //
-  // * Update user lastCheckin
-  // * Update user lastSeenAt
-  // * Update user numCheckins
-  // * Update location numCheckins
-  // * Update location numStars
-  // * Update location averageStars
-
   let lastIdRead = await redisClient.get(checkinProcessorIdKey);
   if (lastIdRead == null) {
     lastIdRead = 0;
@@ -45,7 +35,12 @@ const runCheckinProcessor = async () => {
         checkin[k] = v;
       }
 
-      // TODO do the work...
+      // * Update user lastCheckin
+      // * Update user lastSeenAt
+      // * Update user numCheckins
+      // * Update location numCheckins
+      // * Update location numStars
+      // * Update location averageStars
 
       lastIdRead = checkin.id;
       redisClient.set(checkinProcessorIdKey, lastIdRead);
