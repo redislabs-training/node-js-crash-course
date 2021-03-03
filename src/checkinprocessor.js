@@ -1,9 +1,10 @@
 const redis = require('./utils/redisclient');
-
-const checkinStreamKey = redis.getKeyName('checkins');
+const logger = require('./utils/logger');
 
 const runCheckinProcessor = async () => {
   const redisClient = redis.getClient();
+  const checkinStreamKey = redis.getKeyName('checkins');
+  const checkinProcessorIdKey = redis.getKeyName('checkinprocessor', 'lastid');
 
   // This needs to XREAD from the checkins stream, and perform the
   // following actions for each checkin read:
@@ -14,11 +15,14 @@ const runCheckinProcessor = async () => {
   // * Update location numCheckins
   // * Update location numStars
   // * Update location averageStars
-  //
-  // Also needs to remember where it got up to in the stream.
 
-  // TODO persist this...
-  let lastIdRead = '0';
+  let lastIdRead = await redisClient.get(checkinProcessorIdKey);
+  if (lastIdRead == null) {
+    lastIdRead = 0;
+  }
+
+  // TODO logger
+  logger.info(`Reading stream from last ID ${lastIdRead}.`);
 
   /* eslint-disable no-constant-condition */
   while (true) {
@@ -41,15 +45,14 @@ const runCheckinProcessor = async () => {
         checkin[k] = v;
       }
 
-      // TODO logger and show information from checkin...
-      console.log(checkin);
-
       // TODO do the work...
 
       lastIdRead = checkin.id;
+      redisClient.set(checkinProcessorIdKey, lastIdRead);
+
+      logger.debug(`Processed checkin ${checkin.id}.`);
     } else {
-      // TODO logger...
-      console.log('Waiting for more checkins...');
+      logger.info('Waiting for more checkins...');
     }
   }
 };
