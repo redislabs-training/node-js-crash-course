@@ -7,7 +7,7 @@ const redis = require('./redisclient');
 const redisClient = redis.getClient();
 
 const usage = () => {
-  console.error('Usage: npm run load users|locations|locationdetails|all');
+  console.error('Usage: npm run load users|locations|locationdetails|checkins|all');
   process.exit(0);
 };
 
@@ -75,6 +75,48 @@ const loadLocationDetails = async () => {
   console.log(`Location detail data loaded with ${errorCount} errors.`);
 };
 
+const loadCheckins = async () => {
+  console.log('Loading checkin stream entries...');
+
+  /* eslint-disable global-require */
+  const { checkins } = require('../../data/checkins.json');
+  /* eslint-enable */
+
+  const streamKeyName = redis.getKeyName('checkins');
+
+  // Delete any previous stream.
+  await redisClient.del(streamKeyName);
+
+  // Batch load entries 100 at a time.
+  let n = 0;
+  let pipeline = redisClient.pipeline();
+
+  /* eslint-disable no-await-in-loop */
+  do {
+    const checkin = checkins[n];
+    pipeline.xadd(streamKeyName, checkin.id, 'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating);
+    n += 1;
+
+    if (n % 100 === 0) {
+      // Send 100 XADD commands to Redis.
+      await pipeline.exec();
+
+      // Start a fresh pipeline.
+      pipeline = redisClient.pipeline();
+    }
+  } while (n < checkins.length);
+  /* eslint-enable */
+
+  // Send any remaining checkins if the number of checkins in the
+  // file wasn't divisible by 100.
+  if (pipeline.length > 0) {
+    await pipeline.exec();
+  }
+
+  const numEntries = await redisClient.xlen(streamKeyName);
+  console.log(`Loaded ${numEntries} checkin stream entries.`);
+};
+
 const runDataLoader = async (params) => {
   if (params.length !== 4) {
     usage();
@@ -92,10 +134,14 @@ const runDataLoader = async (params) => {
     case 'locationdetails':
       await loadLocationDetails();
       break;
+    case 'checkins':
+      await loadCheckins();
+      break;
     case 'all':
       await loadUsers();
       await loadLocations();
       await loadLocationDetails();
+      await loadCheckins();
       break;
     default:
       usage();
