@@ -8,7 +8,8 @@
     "load": "node src/utils/dataloader.js --",
     "lint": "./node_modules/eslint/bin/eslint.js src",
     "start": "node ./src/server.js",
-    "checkinreceiver": "node ./src/checkinreceiver.js"
+    "checkinreceiver": "node ./src/checkinreceiver.js",
+    "checkinprocessor": "node ./src/checkinprocessor.js"
   },
   "repository": {
     "type": "git",
