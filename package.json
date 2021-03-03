@@ -8,8 +8,7 @@
     "load": "node src/utils/dataloader.js --",
     "lint": "./node_modules/eslint/bin/eslint.js src",
     "start": "node ./src/server.js",
-    "checkinreceiver": "node ./src/checkinreceiver.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "checkinreceiver": "node ./src/checkinreceiver.js"
   },
   "repository": {
     "type": "git",
