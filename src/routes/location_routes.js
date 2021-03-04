@@ -34,10 +34,7 @@ router.get(
 
     const details = await pipeline.exec();
     const locationOverview = details[0][1];
-
-    let response = {
-      ...details[0][1],
-    };
+    let response;
 
     if (withDetails) {
       const locationDetails = JSON.parse(details[1][1]);
@@ -61,10 +58,34 @@ router.get(
   '/location/:locationId/details',
   [
     param('locationId').isInt({ min: 1 }),
-    query('sections').isString().optional(),
+    query('sections').isString().optional().custom((value, { req }) => {
+      const { sections } = req.query;
+      const validSections = ['socials', 'website', 'description', 'phone', 'hours'];
+      const arrayOfSections = sections.split(',');
+
+      for (const str of arrayOfSections) {
+        if (!validSections.includes(str)) {
+          throw new Error(`Invalid value ${str} for sections.`);
+        }
+      }
+
+      return true;
+    }),
     apiErrorReporter,
   ],
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res, next) => {
+    const { locationId } = req.params;
+    const { sections } = req.query;
+    const locationDetailsKey = redis.getKeyName('locationdetails', locationId);
+
+    let jsonPath = ['.'];
+    if (sections) {
+      jsonPath = sections.split(',');
+    }
+
+    const locationDetails = JSON.parse(await redisClient.call('JSON.GET', locationDetailsKey, ...jsonPath));
+    res.status(200).json(locationDetails);
+  },
 );
 
 // This should also optionally take location type and min star rating request parameters.
