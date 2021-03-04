@@ -38,10 +38,9 @@ const runCheckinProcessor = async () => {
       const userKey = redis.getKeyName('users', checkin.userId);
       const locationKey = redis.getKeyName('locations', checkin.locationId);
 
-      logger.debug(`Updating user ${userKey}`);
-      logger.debug(`Updating location ${locationKey}`);
+      logger.debug(`Updating user ${userKey} and location ${locationKey}.`);
 
-      const pipeline = redisClient.pipeline();
+      let pipeline = redisClient.pipeline();
 
       pipeline.hset(userKey, 'lastCheckin', checkin.timestamp, 'lastSeenAt', checkin.locationId);
       pipeline.hincrby(userKey, 'numCheckins', 1);
@@ -51,14 +50,24 @@ const runCheckinProcessor = async () => {
       /* eslint-disable no-await-in-loop */
       const responses = await pipeline.exec();
       /* eslint-enable */
-      console.log(responses);
 
-      // TODO calculate new averageStars...
+      // Calculate new averageStars... using the 3rd and 4th response
+      // values from the pipeline (location numCheckins and location numStars).
+      const locationNumCheckins = responses[2][1];
+      const locationNumStars = responses[3][1];
 
+      const newAverageStars = Math.round(locationNumStars / locationNumCheckins);
       lastIdRead = checkin.id;
-      redisClient.set(checkinProcessorIdKey, lastIdRead);
 
-      logger.debug(`Processed checkin ${checkin.id}.`);
+      pipeline = redisClient.pipeline();
+      pipeline.hset(locationKey, 'averageStars', newAverageStars);
+      pipeline.set(checkinProcessorIdKey, lastIdRead);
+
+      /* eslint-disable no-await-in-loop */
+      await pipeline.exec();
+      /* eslint-enable */
+
+      logger.info(`Processed checkin ${checkin.id}.`);
     } else {
       logger.info('Waiting for more checkins...');
     }
