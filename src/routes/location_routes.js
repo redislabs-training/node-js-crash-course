@@ -52,8 +52,6 @@ router.get(
   },
 );
 
-// This should also optionally take a sections request parameter to
-// selectively retrieve part of the JSON.
 router.get(
   '/location/:locationId/details',
   [
