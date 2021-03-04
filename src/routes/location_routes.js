@@ -18,7 +18,41 @@ router.get(
     query('withDetails').isBoolean().optional(),
     apiErrorReporter,
   ],
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res, next) => {
+    const { locationId } = req.params;
+    const { withDetails } = req.query;
+
+    const locationKey = redis.getKeyName('locations', locationId);
+
+    const pipeline = redisClient.pipeline();
+    pipeline.hgetall(locationKey);
+
+    if (withDetails) {
+      const locationDetailsKey = redis.getKeyName('locationdetails', locationId);
+      pipeline.call('JSON.GET', locationDetailsKey);
+    }
+
+    const details = await pipeline.exec();
+    const locationOverview = details[0][1];
+
+    let response = {
+      ...details[0][1],
+    };
+
+    if (withDetails) {
+      const locationDetails = JSON.parse(details[1][1]);
+      delete locationDetails.id;
+
+      response = {
+        ...locationOverview,
+        ...locationDetails,
+      };
+    } else {
+      response = locationOverview;
+    }
+
+    res.status(200).json(response);
+  },
 );
 
 // This should also optionally take a sections request parameter to
