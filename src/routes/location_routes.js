@@ -93,7 +93,16 @@ router.get(
     param('latitude').isFloat(),
     param('longitude').isFloat(),
     param('radius').isInt({ min: 1 }),
-    query('type').isString().optional(),
+    query('category').isString().optional().custom((value, { req }) => {
+      const { category } = req.query;
+      const validCategories = ['retail', 'cafe', 'restaurant', 'bar', 'hair', 'gym'];
+
+      if (!validCategories.includes(category)) {
+        throw new Error(`Invalid value ${category} for category.`);
+      }
+
+      return true;
+    }),
     query('minStars').isInt({ min: 1, max: 5 }).optional(),
     apiErrorReporter,
   ],
