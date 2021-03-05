@@ -86,6 +86,31 @@ router.get(
   },
 );
 
+const validateCategory = (category) => {
+  const validCategories = ['retail', 'cafe', 'restaurant', 'bar', 'hair', 'gym'];
+
+  if (!validCategories.includes(category)) {
+    throw new Error(`Invalid value ${category} for category.`);
+  }
+
+  return true;
+};
+
+// Get all locations in a specified category.
+router.get(
+  '/locations/bycategory/:category',
+  [
+    param('category').isString().custom((value, { req }) => {
+      const { category } = req.params;
+      return validateCategory(category);
+    }),
+    apiErrorReporter,
+  ],
+  async (req, res) => {
+    res.status(200).json({ status: 'TODO' });
+  },
+);
+
 // This should also optionally take location type and min star rating request parameters.
 router.get(
   '/locations/:latitude/:longitude/:radius',
@@ -95,13 +120,7 @@ router.get(
     param('radius').isInt({ min: 1 }),
     query('category').isString().optional().custom((value, { req }) => {
       const { category } = req.query;
-      const validCategories = ['retail', 'cafe', 'restaurant', 'bar', 'hair', 'gym'];
-
-      if (!validCategories.includes(category)) {
-        throw new Error(`Invalid value ${category} for category.`);
-      }
-
-      return true;
+      return validateCategory(category);
     }),
     query('minStars').isInt({ min: 1, max: 5 }).optional(),
     apiErrorReporter,
