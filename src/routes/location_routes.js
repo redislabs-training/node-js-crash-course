@@ -18,7 +18,7 @@ router.get(
     query('withDetails').isBoolean().optional(),
     apiErrorReporter,
   ],
-  async (req, res, next) => {
+  async (req, res) => {
     const { locationId } = req.params;
     const { withDetails } = req.query;
 
@@ -71,7 +71,7 @@ router.get(
     }),
     apiErrorReporter,
   ],
-  async (req, res, next) => {
+  async (req, res) => {
     const { locationId } = req.params;
     const { sections } = req.query;
     const locationDetailsKey = redis.getKeyName('locationdetails', locationId);
@@ -106,7 +106,7 @@ router.get(
     query('minStars').isInt({ min: 1, max: 5 }).optional(),
     apiErrorReporter,
   ],
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res) => res.status(200).json({ status: 'TODO' }),
 );
 
 // Call an external weather API to get weather for a given location ID.
@@ -131,7 +131,7 @@ router.get(
       next();
     }
   },
-  async (req, res, next) => {
+  async (req, res) => {
     const { locationId } = req.params;
 
     // Get the co-ordinates for this location from Redis.

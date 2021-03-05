@@ -11,7 +11,7 @@ router.get(
     param('userId').isInt({ min: 1 }),
     apiErrorReporter,
   ],
-  async (req, res, next) => {
+  async (req, res) => {
     const { userId } = req.params;
     const userKey = redis.getKeyName('users', userId);
 
@@ -29,19 +29,19 @@ router.get(
     param('emailAddress').isEmail(),
     apiErrorReporter,
   ],
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res) => res.status(200).json({ status: 'TODO' }),
 );
 
 // Get users that have recently checked in somewhere.
 router.get(
   '/users/recent',
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res) => res.status(200).json({ status: 'TODO' }),
 );
 
 // Get the top 100 users by number of checkins.
 router.get(
   '/users/bycheckins',
-  async (req, res, next) => res.status(200).json({ status: 'TODO' }),
+  async (req, res) => res.status(200).json({ status: 'TODO' }),
 );
 
 module.exports = router;

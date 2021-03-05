@@ -23,7 +23,7 @@ router.get(
     param('endTime').isInt({ min: 0 }).custom(timestampValidator),
     apiErrorReporter,
   ],
-  async (req, res, next) => {
+  async (req, res) => {
     const { startTime, endTime } = req.params;
     const checkinStreamKey = redis.getKeyName('checkins');
 
