@@ -7,7 +7,7 @@ const redis = require('./redisclient');
 const redisClient = redis.getClient();
 
 const usage = () => {
-  console.error('Usage: npm run load users|locations|locationdetails|checkins|all');
+  console.error('Usage: npm run load users|locations|locationdetails|checkins|indexes|all');
   process.exit(0);
 };
 
@@ -117,6 +117,25 @@ const loadCheckins = async () => {
   console.log(`Loaded ${numEntries} checkin stream entries.`);
 };
 
+const createIndexes = async () => {
+  console.log('Dropping any existing indexes, creating new indexes...');
+
+  const pipeline = redisClient.pipeline();
+  pipeline.call('FT.DROPINDEX', 'usersidx');
+  pipeline.call('FT.DROPINDEX', 'locationsidx');
+  pipeline.call('FT.CREATE', 'usersidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TEXT', 'NOSTEM', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckIn', 'NUMERIC', 'SORTABLE');
+  pipeline.call('FT.CREATE', 'locationsidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('locations'), 'SCHEMA', 'category', 'TAG', 'SORTABLE', 'location', 'GEO', 'SORTABLE', 'numCheckins', 'NUMERIC', 'SORTABLE', 'numStars', 'NUMERIC', 'SORTABLE', 'averageStars', 'NUMERIC', 'SORTABLE');
+
+  const responses = await pipeline.exec();
+
+  if (responses.length === 4 && responses[2][1] === 'OK' && responses[3][1] === 'OK') {
+    console.log('Created indexes.');
+  } else {
+    console.log('Unexpected error creating indexes :(');
+    console.log(responses);
+  }
+};
+
 const runDataLoader = async (params) => {
   if (params.length !== 4) {
     usage();
@@ -137,11 +156,15 @@ const runDataLoader = async (params) => {
     case 'checkins':
       await loadCheckins();
       break;
+    case 'indexes':
+      await createIndexes();
+      break;
     case 'all':
       await loadUsers();
       await loadLocations();
       await loadLocationDetails();
       await loadCheckins();
+      await createIndexes();
       break;
     default:
       usage();
