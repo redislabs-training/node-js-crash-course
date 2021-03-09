@@ -94,7 +94,7 @@ const loadCheckins = async () => {
   /* eslint-disable no-await-in-loop */
   do {
     const checkin = checkins[n];
-    pipeline.xadd(streamKeyName, '*', 'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating);
+    pipeline.xadd(streamKeyName, checkin.id, 'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating);
     n += 1;
 
     if (n % 100 === 0) {
