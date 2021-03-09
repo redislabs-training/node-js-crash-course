@@ -1,7 +1,7 @@
 const config = require('better-config');
 const fetch = require('node-fetch');
 const logger = require('./utils/logger');
-const { sleep } = require('./utils/sleep');
+const sleep = require('./utils/sleep');
 
 config.set('../config.json');
 
@@ -37,7 +37,7 @@ const runCheckinGenerator = async () => {
   while (true) {
     /* eslint-enable */
     /* eslint-disable no-await-in-loop */
-    await sleep(randomInRange(1, 15));
+    await sleep.randomSleep(1, 15);
     await generateCheckin();
     /* estlint-enable */
   }
