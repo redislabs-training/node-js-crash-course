@@ -2,6 +2,8 @@ const Redis = require('ioredis');
 const config = require('better-config');
 const logger = require('./logger');
 
+const MAX_SEARCH_RESULTS = 1000;
+
 config.set('../../config.json');
 
 const redis = new Redis({
@@ -12,7 +14,8 @@ const redis = new Redis({
 
 const performSearch = async (index, ...query) => {
   try {
-    const searchResults = await redis.call('FT.SEARCH', index, query);
+    // Return the first MAX_SEARCH_RESULTS matching documents.
+    const searchResults = await redis.call('FT.SEARCH', index, query, 'LIMIT', '0', MAX_SEARCH_RESULTS);
 
     // An empty search result looks like [ 0 ].
     if (searchResults.length === 1) {
