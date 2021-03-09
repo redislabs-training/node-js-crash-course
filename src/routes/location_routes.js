@@ -107,6 +107,11 @@ router.get(
     apiErrorReporter,
   ],
   async (req, res) => {
+    const { category } = req.params;
+    const searchResults = await redis.performSearch('locationsidx', `@category:{${category}}`);
+
+    console.log(searchResults);
+    console.log(searchResults[0]); // 0 when nothing
     res.status(200).json({ status: 'TODO' });
   },
 );
@@ -125,7 +130,18 @@ router.get(
     query('minStars').isInt({ min: 1, max: 5 }).optional(),
     apiErrorReporter,
   ],
-  async (req, res) => res.status(200).json({ status: 'TODO' }),
+  async (req, res) => {
+    const { latitude, longitude, radius } = req.params;
+    const { category, minStars } = req.query;
+
+    const categoryClause = category ? `@category:{${category}}` : '';
+    const minStarsClause = minStars ? `@averageStars:[${minStars} 5]` : '';
+
+    const searchResults = await redis.performSearch('locationsidx', `@location:[${longitude},${latitude} ${radius} mi] ${minStarsClause} ${categoryClause}`);
+    console.log(searchResults);
+
+    res.status(200).json({ status: 'TODO' });
+  },
 );
 
 // Call an external weather API to get weather for a given location ID.

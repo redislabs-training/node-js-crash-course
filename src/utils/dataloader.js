@@ -94,7 +94,7 @@ const loadCheckins = async () => {
   /* eslint-disable no-await-in-loop */
   do {
     const checkin = checkins[n];
-    pipeline.xadd(streamKeyName, checkin.id, 'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating);
+    pipeline.xadd(streamKeyName, '*', 'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating);
     n += 1;
 
     if (n % 100 === 0) {
@@ -123,7 +123,7 @@ const createIndexes = async () => {
   const pipeline = redisClient.pipeline();
   pipeline.call('FT.DROPINDEX', 'usersidx');
   pipeline.call('FT.DROPINDEX', 'locationsidx');
-  pipeline.call('FT.CREATE', 'usersidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TEXT', 'NOSTEM', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckin', 'NUMERIC', 'SORTABLE');
+  pipeline.call('FT.CREATE', 'usersidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TAG', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckin', 'NUMERIC', 'SORTABLE');
   pipeline.call('FT.CREATE', 'locationsidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('locations'), 'SCHEMA', 'category', 'TAG', 'SORTABLE', 'location', 'GEO', 'SORTABLE', 'numCheckins', 'NUMERIC', 'SORTABLE', 'numStars', 'NUMERIC', 'SORTABLE', 'averageStars', 'NUMERIC', 'SORTABLE');
 
   const responses = await pipeline.exec();
