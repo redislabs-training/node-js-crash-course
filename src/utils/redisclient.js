@@ -1,5 +1,6 @@
 const Redis = require('ioredis');
 const config = require('better-config');
+const logger = require('./logger');
 
 config.set('../../config.json');
 
@@ -40,7 +41,8 @@ const performSearch = async (index, ...query) => {
     return results;
   } catch (e) {
     // A malformed query or unknown index etc causes an exception type error.
-    // TODO ERROR LOG THIS...
+    logger.error(`Invalid search request for index: ${index}, query: ${query}`);
+    logger.error(e);
     return [];
   }
 };
