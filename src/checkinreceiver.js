@@ -33,7 +33,7 @@ app.post(
   async (req, res) => {
     const checkin = req.body;
 
-    // Don't (a)wait for this to finish...
+    // Don't (a)wait for this to finish, use callback instead.
     redisClient.xadd(
       checkinStreamKey, 'MAXLEN', '~', maxStreamLength, '*',
       'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating,
