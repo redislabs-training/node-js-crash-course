@@ -1,10 +1,12 @@
 const redis = require('./utils/redisclient');
 const logger = require('./utils/logger');
+const sleep = require('./utils/sleep');
 
 const runCheckinProcessor = async () => {
   const redisClient = redis.getClient();
   const checkinStreamKey = redis.getKeyName('checkins');
   const checkinProcessorIdKey = redis.getKeyName('checkinprocessor', 'lastid');
+  const delay = process.argv[3] === 'delay';
 
   let lastIdRead = await redisClient.get(checkinProcessorIdKey);
   if (lastIdRead == null) {
@@ -65,6 +67,12 @@ const runCheckinProcessor = async () => {
 
       /* eslint-disable no-await-in-loop */
       await pipeline.exec();
+
+      // Simulate some time consuming "work"...
+      if (delay) {
+        logger.info('Pausing to simulate work.');
+        await sleep.randomSleep(5, 30);
+      }
       /* eslint-enable */
 
       logger.info(`Processed checkin ${checkin.id}.`);
