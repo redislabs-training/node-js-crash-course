@@ -10,7 +10,7 @@ const redisClient = redis.getClient();
 
 const getWeatherKey = (locationId) => redis.getKeyName('weather', locationId);
 
-// This should also optionally take a withDetails request parameter.
+// Get location by ID, optionally with extra details.
 router.get(
   '/location/:locationId',
   [
@@ -82,7 +82,9 @@ router.get(
     }
 
     const locationDetails = JSON.parse(await redisClient.call('JSON.GET', locationDetailsKey, ...jsonPath));
-    res.status(200).json(locationDetails);
+
+    // If null response, return empty object.
+    res.status(200).json(locationDetails || {});
   },
 );
 
@@ -110,9 +112,7 @@ router.get(
     const { category } = req.params;
     const searchResults = await redis.performSearch('locationsidx', `@category:{${category}}`);
 
-    console.log(searchResults);
-    console.log(searchResults[0]); // 0 when nothing
-    res.status(200).json({ status: 'TODO' });
+    res.status(200).json(searchResults);
   },
 );
 
@@ -135,12 +135,11 @@ router.get(
     const { category, minStars } = req.query;
 
     const categoryClause = category ? `@category:{${category}}` : '';
-    const minStarsClause = minStars ? `@averageStars:[${minStars} 5]` : '';
+    const minStarsClause = minStars ? `@averageStars:[${minStars} +inf]` : '';
 
     const searchResults = await redis.performSearch('locationsidx', `@location:[${longitude},${latitude} ${radius} mi] ${minStarsClause} ${categoryClause}`);
-    console.log(searchResults);
 
-    res.status(200).json({ status: 'TODO' });
+    res.status(200).json(searchResults);
   },
 );
 
@@ -174,14 +173,19 @@ router.get(
 
     // Get lng,lat coordinates from Redis.
     const coords = await redisClient.hget(locationKey, 'location');
-    const [lng, lat] = coords.split(',');
+    let weatherJSON = {};
 
-    // Call the API.
-    const apiResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}`);
-    const weatherJSON = await apiResponse.json();
+    // Check if the location existed in Redis and get weather if so.
+    if (coords) {
+      const [lng, lat] = coords.split(',');
 
-    // Store the results in Redis and set TTL.
-    redisClient.setex(getWeatherKey(locationId), CACHE_TIME, JSON.stringify(weatherJSON));
+      // Call the API.
+      const apiResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}`);
+      weatherJSON = await apiResponse.json();
+
+      // Store the results in Redis and set TTL.
+      redisClient.setex(getWeatherKey(locationId), CACHE_TIME, JSON.stringify(weatherJSON));
+    }
 
     res.status(200).json(weatherJSON);
   },
