@@ -1,14 +1,13 @@
 const config = require('better-config');
 const fetch = require('node-fetch');
 const logger = require('./utils/logger');
+const { sleep } = require('./utils/sleep');
 
 config.set('../config.json');
 
 const CHECKIN_RECEIVER_URL = `http://localhost:${config.checkinReceiver.port}/api/checkin`;
 
 const randomInRange = (min, max) => Math.ceil(Math.random() * (max - min) + min);
-
-const sleep = (seconds) => new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 
 const generateCheckin = async () => {
   const checkin = {
