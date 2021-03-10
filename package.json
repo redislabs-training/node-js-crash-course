@@ -10,7 +10,8 @@
     "start": "node ./src/server.js",
     "checkingenerator": "node ./src/checkingenerator.js",
     "checkinreceiver": "node ./src/checkinreceiver.js",
-    "checkinprocessor": "node ./src/checkinprocessor.js --"
+    "checkinprocessor": "node ./src/checkinprocessor.js --",
+    "checkingroupprocessor": "node ./src/checkingroupprocessor.js"
   },
   "repository": {
     "type": "git",
