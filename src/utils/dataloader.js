@@ -6,6 +6,8 @@ const redis = require('./redisclient');
 
 const redisClient = redis.getClient();
 
+const CONSUMER_GROUP_NAME = 'checkinConsumers';
+
 const usage = () => {
   console.error('Usage: npm run load users|locations|locationdetails|checkins|indexes|all');
   process.exit(0);
@@ -115,6 +117,14 @@ const loadCheckins = async () => {
 
   const numEntries = await redisClient.xlen(streamKeyName);
   console.log(`Loaded ${numEntries} checkin stream entries.`);
+
+  console.log('Creating consumer group...');
+  pipeline = redisClient.pipeline();
+
+  pipeline.xgroup('DESTROY', streamKeyName, CONSUMER_GROUP_NAME);
+  pipeline.xgroup('CREATE', streamKeyName, CONSUMER_GROUP_NAME, 0);
+  await pipeline.exec();
+  console.log('Consumer group created.');
 };
 
 const createIndexes = async () => {
