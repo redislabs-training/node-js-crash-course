@@ -1,13 +1,23 @@
+const fs = require('fs');
 const redis = require('./utils/redisclient');
 const logger = require('./utils/logger');
 const sleep = require('./utils/sleep');
 
 const CONSUMER_GROUP_NAME = 'checkinConsumers';
+const redisClient = redis.getClient();
+
+const loadLuaScript = async () => {
+  redisClient.defineCommand('processCheckin', {
+    numberOfKeys: 2,
+    lua: fs.readFileSync('src/scripts/checkinprocessor.lua').toString(),
+  });
+};
 
 const runCheckinGroupProcessor = async (consumerName) => {
   logger.info(`${consumerName}: Starting up.`);
 
-  const redisClient = redis.getClient();
+  loadLuaScript();
+
   const checkinStreamKey = redis.getKeyName('checkins');
 
   /* eslint-disable no-constant-condition */
@@ -49,9 +59,20 @@ const runCheckinGroupProcessor = async (consumerName) => {
 
       logger.debug(`${consumerName}: Updating user ${userKey} and location ${locationKey}.`);
 
+      /* eslint-disable no-await-in-loop */
+      await redisClient.processCheckin(
+        userKey, locationKey, checkin.timestamp, checkin.locationId, checkin.starRating,
+      );
+      /* eslint-enable */
+
       let pipeline = redisClient.pipeline();
 
+      // TODO this needs to be done in Lua because we have to check the lastCheckin and only
+      // update lastCheckin and lastSeenAt if this checkin's timestamp is > current lastCheckin.
       pipeline.hset(userKey, 'lastCheckin', checkin.timestamp, 'lastSeenAt', checkin.locationId);
+
+      // These are safe as hincrby is atomic, so other instances of the consumer updating
+      // them won't be a problem.
       pipeline.hincrby(userKey, 'numCheckins', 1);
       pipeline.hincrby(locationKey, 'numCheckins', 1);
       pipeline.hincrby(locationKey, 'numStars', checkin.starRating);
@@ -62,6 +83,7 @@ const runCheckinGroupProcessor = async (consumerName) => {
 
       // Calculate new averageStars... using the 3rd and 4th response
       // values from the pipeline (location numCheckins and location numStars).
+      // TODO how to handle this
       const locationNumCheckins = responses[2][1];
       const locationNumStars = responses[3][1];
 
