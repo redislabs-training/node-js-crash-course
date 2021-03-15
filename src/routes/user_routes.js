@@ -61,7 +61,6 @@ router.get(
   '/users/recent',
   async (req, res) => {
     // Let's say checkins from the start of yesterday or newer count as "recent"...
-    // TODO might want to rethink that...
     const d = new Date();
     const now = d.getTime();
 
