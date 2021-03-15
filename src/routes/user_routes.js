@@ -80,7 +80,6 @@ router.get(
   '/users/bycheckins',
   async (req, res) => {
     const searchResults = await redis.performSearch('usersidx', '*', 'SORTBY', 'numCheckins', 'DESC', 'LIMIT', '0', '100');
-
     res.status(200).json(removeSensitiveFields(searchResults, ...SENSITIVE_FIELD_NAMES));
   },
 );
