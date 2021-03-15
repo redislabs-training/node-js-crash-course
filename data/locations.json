@@ -1109,7 +1109,7 @@
     },
     {
       "id": 124,
-      "name": "TODO",
+      "name": "The Colonel Jefferson",
       "category": "bar",
       "location": "-121.9110367,37.713863",
       "numCheckins": 936,
@@ -1307,8 +1307,8 @@
     },
     {
       "id": 146,
-      "name": "TODO",
-      "category": "The Old Courthouse",
+      "name": "The Old Courthouse",
+      "category": "bar",
       "location": "-122.286565,37.859962",
       "numCheckins": 829,
       "numStars": 1079,
@@ -1532,7 +1532,7 @@
     },
     {
       "id": 171,
-      "name": "TODO",
+      "name": "Hair by Parvinder",
       "category": "hair",
       "location": "-122.2442037,37.8588565",
       "numCheckins": 304,
@@ -1865,7 +1865,7 @@
     },
     {
       "id": 208,
-      "name": "TODO",
+      "name": "Salon 415",
       "category": "hair",
       "location": "-122.124605,37.708643",
       "numCheckins": 498,
