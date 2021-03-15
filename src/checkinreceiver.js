@@ -2,7 +2,6 @@ const config = require('better-config');
 const express = require('express');
 const { body } = require('express-validator');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('./utils/logger');
 const apiErrorReporter = require('./utils/apierrorreporter');
@@ -16,7 +15,7 @@ const redisClient = redis.getClient();
 const app = express();
 app.use(morgan('combined', { stream: logger.stream }));
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 const checkinStreamKey = redis.getKeyName('checkins');
 const maxStreamLength = config.get('checkinReceiver.maxStreamLength');
