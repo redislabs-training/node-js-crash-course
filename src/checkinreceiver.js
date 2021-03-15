@@ -35,8 +35,7 @@ app.post(
 
     // Don't (a)wait for this to finish, use callback instead.
     redisClient.xadd(
-      checkinStreamKey, 'MAXLEN', '~', maxStreamLength, '*',
-      'locationId', checkin.locationId, 'userId', checkin.userId, 'starRating', checkin.starRating,
+      checkinStreamKey, 'MAXLEN', '~', maxStreamLength, '*', ...Object.entries(checkin).flat(),
       (err, result) => {
         if (err) {
           logger.error('Error adding checkin to stream:');
