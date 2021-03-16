@@ -1,6 +1,8 @@
 const config = require('better-config');
 const express = require('express');
 const { body } = require('express-validator');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const morgan = require('morgan');
 const cors = require('cors');
 const logger = require('./utils/logger');
@@ -17,11 +19,29 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(cors());
 app.use(express.json());
 
+app.use(session({
+  secret: config.sessionSecret,
+  store: new RedisStore({
+    client: redis.getClient(),
+    prefix: redis.getKeyName('session:'),
+  }),
+  name: 'checkinapp',
+  resave: false,
+  saveUninitialized: true,
+}));
+
 const checkinStreamKey = redis.getKeyName('checkins');
 const maxStreamLength = config.get('checkinReceiver.maxStreamLength');
 
 app.post(
   '/api/checkin',
+  (req, res, next) => {
+    if (!req.session.user) {
+      return res.status(401).send('Authentication required.');
+    }
+
+    return next();
+  },
   [
     body().isObject(),
     body('userId').isInt({ min: 1 }),
@@ -31,6 +51,7 @@ app.post(
   ],
   async (req, res) => {
     const checkin = req.body;
+    console.log(req.session);
 
     // Don't (a)wait for this to finish, use callback instead.
     redisClient.xadd(

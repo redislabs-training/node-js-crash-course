@@ -2,6 +2,7 @@ const config = require('better-config');
 const express = require('express');
 const { body } = require('express-validator');
 const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const morgan = require('morgan');
 const cors = require('cors');
 const logger = require('./utils/logger');
@@ -17,9 +18,13 @@ app.use(cors());
 app.use(express.json());
 app.use(session({
   secret: config.sessionSecret,
+  store: new RedisStore({
+    client: redis.getClient(),
+    prefix: redis.getKeyName('session:'),
+  }),
   name: 'checkinapp',
-  // resave: false, // Check with the Redis doc for advice here...
-  // store: 'TODO', // Check with the Redis doc for advice here...
+  resave: false,
+  saveUninitialized: true,
 }));
 
 app.post(
@@ -31,7 +36,6 @@ app.post(
     apiErrorReporter,
   ],
   async (req, res) => {
-    // TODO some stuff
     const { email, password } = req.body;
 
     // See if the correct password for this email was provided...
@@ -48,7 +52,7 @@ app.post(
     if (validLogin) {
       // TODO do something...
       logger.info(`Successful login for ${email}.`);
-      req.session.email = email;
+      req.session.user = email;
       res.send('OK');
     } else {
       logger.info(`Failed login attempt for ${email}.`);
@@ -60,14 +64,14 @@ app.post(
 app.get(
   '/logout',
   (req, res) => {
-    const { email } = req.session;
+    const { user } = req.session;
 
     req.session.destroy((err) => {
       if (err) {
         logger.error('Error performing logout:');
         logger.error(err);
-      } else if (email) {
-        logger.info(`Logged out user ${email}.`);
+      } else if (user) {
+        logger.info(`Logged out user ${user}.`);
       } else {
         logger.info('Logout called by a user without a session.');
       }
