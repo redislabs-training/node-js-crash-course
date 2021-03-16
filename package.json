@@ -4,14 +4,15 @@
   "description": "Node.js Crash Course for Redis",
   "main": "src/server.js",
   "scripts": {
+    "auth": "node ./src/auth.js",
     "dev": "./node_modules/nodemon/bin/nodemon.js",
-    "load": "node src/utils/dataloader.js --",
     "lint": "./node_modules/eslint/bin/eslint.js src",
-    "start": "node ./src/server.js",
+    "load": "node src/utils/dataloader.js --",
     "checkingenerator": "node ./src/checkingenerator.js",
-    "checkinreceiver": "node ./src/checkinreceiver.js",
+    "checkingroupprocessor": "node ./src/checkingroupprocessor.js",
     "checkinprocessor": "node ./src/checkinprocessor.js --",
-    "checkingroupprocessor": "node ./src/checkingroupprocessor.js"
+    "checkinreceiver": "node ./src/checkinreceiver.js",
+    "start": "node ./src/server.js"
   },
   "repository": {
     "type": "git",

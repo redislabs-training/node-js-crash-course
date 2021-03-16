@@ -63,37 +63,6 @@ const runCheckinGroupProcessor = async (consumerName) => {
       await redisClient.processCheckin(
         userKey, locationKey, checkin.timestamp, checkin.locationId, checkin.starRating,
       );
-      /* eslint-enable */
-
-      let pipeline = redisClient.pipeline();
-
-      // TODO this needs to be done in Lua because we have to check the lastCheckin and only
-      // update lastCheckin and lastSeenAt if this checkin's timestamp is > current lastCheckin.
-      pipeline.hset(userKey, 'lastCheckin', checkin.timestamp, 'lastSeenAt', checkin.locationId);
-
-      // These are safe as hincrby is atomic, so other instances of the consumer updating
-      // them won't be a problem.
-      pipeline.hincrby(userKey, 'numCheckins', 1);
-      pipeline.hincrby(locationKey, 'numCheckins', 1);
-      pipeline.hincrby(locationKey, 'numStars', checkin.starRating);
-
-      /* eslint-disable no-await-in-loop */
-      const responses = await pipeline.exec();
-      /* eslint-enable */
-
-      // Calculate new averageStars... using the 3rd and 4th response
-      // values from the pipeline (location numCheckins and location numStars).
-      // TODO how to handle this
-      const locationNumCheckins = responses[2][1];
-      const locationNumStars = responses[3][1];
-
-      const newAverageStars = Math.round(locationNumStars / locationNumCheckins);
-
-      pipeline = redisClient.pipeline();
-      pipeline.hset(locationKey, 'averageStars', newAverageStars);
-
-      /* eslint-disable no-await-in-loop */
-      await pipeline.exec();
 
       // Pretend to do some time consuming work on this checkin...
       logger.info(`${consumerName}: Pausing to simulate work.`);

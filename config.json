@@ -3,6 +3,9 @@
   "application": {
     "port": 8081
   },
+  "auth": {
+    "port": 8083
+  },
   "checkinReceiver": {
     "port": 8082,
     "maxStreamLength": 500000
