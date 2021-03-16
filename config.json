@@ -1,5 +1,6 @@
 {
   "logLevel": "debug",
+  "sessionSecret": "red15alltheTh1ngZ!",
   "application": {
     "port": 8081
   },

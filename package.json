@@ -29,8 +29,10 @@
   "homepage": "https://github.com/redislabs-training/node-js-crash-course#readme",
   "dependencies": {
     "better-config": "^1.2.3",
+    "connect-redis": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "express-validator": "^6.10.0",
     "ioredis": "^4.22.0",
     "morgan": "^1.10.0",

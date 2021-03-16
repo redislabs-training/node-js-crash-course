@@ -1,6 +1,7 @@
 const config = require('better-config');
 const express = require('express');
 const { body } = require('express-validator');
+const session = require('express-session');
 const morgan = require('morgan');
 const cors = require('cors');
 const logger = require('./utils/logger');
@@ -14,6 +15,12 @@ const app = express();
 app.use(morgan('combined', { stream: logger.stream }));
 app.use(cors());
 app.use(express.json());
+app.use(session({
+  secret: config.sessionSecret,
+  name: 'checkinapp',
+  // resave: false, // Check with the Redis doc for advice here...
+  // store: 'TODO', // Check with the Redis doc for advice here...
+}));
 
 app.post(
   '/login',
@@ -40,10 +47,33 @@ app.post(
 
     if (validLogin) {
       // TODO do something...
+      logger.info(`Successful login for ${email}.`);
+      req.session.email = email;
       res.send('OK');
     } else {
+      logger.info(`Failed login attempt for ${email}.`);
       res.status(401).send('Invalid login.');
     }
+  },
+);
+
+app.get(
+  '/logout',
+  (req, res) => {
+    const { email } = req.session;
+
+    req.session.destroy((err) => {
+      if (err) {
+        logger.error('Error performing logout:');
+        logger.error(err);
+      } else if (email) {
+        logger.info(`Logged out user ${email}.`);
+      } else {
+        logger.info('Logout called by a user without a session.');
+      }
+    });
+
+    res.send('OK');
   },
 );
 
