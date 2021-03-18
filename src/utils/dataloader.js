@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const config = require('better-config');
 
 config.set('../../config.json');
@@ -36,6 +37,13 @@ const loadUsers = async () => {
   console.log('Loading user data...');
   /* eslint-disable global-require */
   const usersJSON = require('../../data/users.json');
+  /* eslint-enable */
+
+  // Hash the passwords...
+  /* eslint-disable array-callback-return, no-param-reassign */
+  usersJSON.users.map((user) => {
+    user.password = bcrypt.hashSync(user.password, 5);
+  });
   /* eslint-enable */
 
   const errorCount = await loadData(usersJSON.users, 'users');

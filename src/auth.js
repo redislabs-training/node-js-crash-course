@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const config = require('better-config');
 const express = require('express');
 const { body } = require('express-validator');
@@ -47,17 +48,21 @@ app.post(
     const searchResults = await redis.performSearch('usersidx', `@email:{${emailAddress}}`, 'RETURN', '1', 'password');
 
     // Valid searchResults looks like [ { password: 'ssssh' } ]
-    const validLogin = searchResults.length === 1 && searchResults[0].password === password;
+    if (searchResults.length === 1) {
+      const passwordCorrect = await bcrypt.compare(password, searchResults[0].password);
 
-    if (validLogin) {
-      // TODO do something...
-      logger.info(`Successful login for ${email}.`);
-      req.session.user = email;
-      res.send('OK');
-    } else {
-      logger.info(`Failed login attempt for ${email}.`);
-      res.status(401).send('Invalid login.');
+      if (passwordCorrect) {
+        logger.info(`Successful login for ${email}.`);
+        req.session.user = email;
+        return res.send('OK');
+      }
     }
+
+    // Remove any session this user previously had.
+    req.session.destroy();
+
+    logger.info(`Failed login attempt for ${email}.`);
+    return res.status(401).send('Invalid login.');
   },
 );
 
