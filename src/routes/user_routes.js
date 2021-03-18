@@ -46,7 +46,7 @@ router.get(
     /* eslint-disable no-useless-escape */
     const emailAddress = req.params.emailAddress.replace(/\./g, '\\.').replace(/\@/g, '\\@');
     /* eslint-enable */
-    const searchResults = await redis.performSearch('usersidx', `@email:{${emailAddress}}`);
+    const searchResults = await redis.performSearch(redis.getKeyName('usersidx'), `@email:{${emailAddress}}`);
 
     const response = searchResults.length === 1
       ? removeSensitiveFields(searchResults, ...SENSITIVE_FIELD_NAMES)[0]
@@ -70,7 +70,7 @@ router.get(
     d.setSeconds(0);
     d.setMilliseconds(0);
 
-    const searchResults = await redis.performSearch('usersidx', `@lastCheckin:[${d.getTime()} ${now}]`, 'SORTBY', 'lastCheckin', 'DESC');
+    const searchResults = await redis.performSearch(redis.getKeyName('usersidx'), `@lastCheckin:[${d.getTime()} ${now}]`, 'SORTBY', 'lastCheckin', 'DESC');
     res.status(200).json(removeSensitiveFields(searchResults, ...SENSITIVE_FIELD_NAMES));
   },
 );
@@ -79,7 +79,7 @@ router.get(
 router.get(
   '/users/bycheckins',
   async (req, res) => {
-    const searchResults = await redis.performSearch('usersidx', '*', 'SORTBY', 'numCheckins', 'DESC', 'LIMIT', '0', '100');
+    const searchResults = await redis.performSearch(redis.getKeyName('usersidx'), '*', 'SORTBY', 'numCheckins', 'DESC', 'LIMIT', '0', '100');
     res.status(200).json(removeSensitiveFields(searchResults, ...SENSITIVE_FIELD_NAMES));
   },
 );

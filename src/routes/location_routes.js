@@ -110,7 +110,7 @@ router.get(
   ],
   async (req, res) => {
     const { category } = req.params;
-    const searchResults = await redis.performSearch('locationsidx', `@category:{${category}}`);
+    const searchResults = await redis.performSearch(redis.getKeyName('locationsidx'), `@category:{${category}}`);
 
     res.status(200).json(searchResults);
   },
@@ -137,7 +137,7 @@ router.get(
     const categoryClause = category ? `@category:{${category}}` : '';
     const minStarsClause = minStars ? `@averageStars:[${minStars} +inf]` : '';
 
-    const searchResults = await redis.performSearch('locationsidx', `@location:[${longitude},${latitude} ${radius} mi] ${minStarsClause} ${categoryClause}`);
+    const searchResults = await redis.performSearch(redis.getKeyName('locationsidx'), `@location:[${longitude},${latitude} ${radius} mi] ${minStarsClause} ${categoryClause}`);
 
     res.status(200).json(searchResults);
   },

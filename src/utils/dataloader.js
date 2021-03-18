@@ -139,10 +139,10 @@ const createIndexes = async () => {
   console.log('Dropping any existing indexes, creating new indexes...');
 
   const pipeline = redisClient.pipeline();
-  pipeline.call('FT.DROPINDEX', 'usersidx');
-  pipeline.call('FT.DROPINDEX', 'locationsidx');
-  pipeline.call('FT.CREATE', 'usersidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TAG', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckin', 'NUMERIC', 'SORTABLE');
-  pipeline.call('FT.CREATE', 'locationsidx', 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('locations'), 'SCHEMA', 'category', 'TAG', 'SORTABLE', 'location', 'GEO', 'SORTABLE', 'numCheckins', 'NUMERIC', 'SORTABLE', 'numStars', 'NUMERIC', 'SORTABLE', 'averageStars', 'NUMERIC', 'SORTABLE');
+  pipeline.call('FT.DROPINDEX', redis.getKeyName('usersidx'));
+  pipeline.call('FT.DROPINDEX', redis.getKeyName('locationsidx'));
+  pipeline.call('FT.CREATE', redis.getKeyName('usersidx'), 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TAG', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckin', 'NUMERIC', 'SORTABLE');
+  pipeline.call('FT.CREATE', redis.getKeyName('locationsidx'), 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('locations'), 'SCHEMA', 'category', 'TAG', 'SORTABLE', 'location', 'GEO', 'SORTABLE', 'numCheckins', 'NUMERIC', 'SORTABLE', 'numStars', 'NUMERIC', 'SORTABLE', 'averageStars', 'NUMERIC', 'SORTABLE');
 
   const responses = await pipeline.exec();
 

@@ -45,7 +45,7 @@ app.post(
     /* eslint-disable no-useless-escape */
     const emailAddress = email.replace(/\./g, '\\.').replace(/\@/g, '\\@');
     /* eslint-enable */
-    const searchResults = await redis.performSearch('usersidx', `@email:{${emailAddress}}`, 'RETURN', '1', 'password');
+    const searchResults = await redis.performSearch(redis.getKeyName('usersidx'), `@email:{${emailAddress}}`, 'RETURN', '1', 'password');
 
     // Valid searchResults looks like [ { password: 'ssssh' } ]
     if (searchResults.length === 1) {
