@@ -51,7 +51,6 @@ app.post(
   ],
   async (req, res) => {
     const checkin = req.body;
-    console.log(req.session);
 
     // Don't (a)wait for this to finish, use callback instead.
     redisClient.xadd(
