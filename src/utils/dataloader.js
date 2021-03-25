@@ -10,7 +10,7 @@ const redisClient = redis.getClient();
 const CONSUMER_GROUP_NAME = 'checkinConsumers';
 
 const usage = () => {
-  console.error('Usage: npm run load users|locations|locationdetails|checkins|indexes|all');
+  console.error('Usage: npm run load users|locations|locationdetails|checkins|indexes|bloom|all');
   process.exit(0);
 };
 
@@ -138,11 +138,14 @@ const loadCheckins = async () => {
 const createIndexes = async () => {
   console.log('Dropping any existing indexes, creating new indexes...');
 
+  const usersIndexKey = redis.getKeyName('usersidx');
+  const locationsIndexKey = redis.getKeyName('locationsidx');
+
   const pipeline = redisClient.pipeline();
-  pipeline.call('FT.DROPINDEX', redis.getKeyName('usersidx'));
-  pipeline.call('FT.DROPINDEX', redis.getKeyName('locationsidx'));
-  pipeline.call('FT.CREATE', redis.getKeyName('usersidx'), 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TAG', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckin', 'NUMERIC', 'SORTABLE');
-  pipeline.call('FT.CREATE', redis.getKeyName('locationsidx'), 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('locations'), 'SCHEMA', 'category', 'TAG', 'SORTABLE', 'location', 'GEO', 'SORTABLE', 'numCheckins', 'NUMERIC', 'SORTABLE', 'numStars', 'NUMERIC', 'SORTABLE', 'averageStars', 'NUMERIC', 'SORTABLE');
+  pipeline.call('FT.DROPINDEX', usersIndexKey);
+  pipeline.call('FT.DROPINDEX', locationsIndexKey);
+  pipeline.call('FT.CREATE', usersIndexKey, 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('users'), 'SCHEMA', 'email', 'TAG', 'numCheckins', 'NUMERIC', 'SORTABLE', 'lastSeenAt', 'NUMERIC', 'SORTABLE', 'lastCheckin', 'NUMERIC', 'SORTABLE');
+  pipeline.call('FT.CREATE', locationsIndexKey, 'ON', 'HASH', 'PREFIX', '1', redis.getKeyName('locations'), 'SCHEMA', 'category', 'TAG', 'SORTABLE', 'location', 'GEO', 'SORTABLE', 'numCheckins', 'NUMERIC', 'SORTABLE', 'numStars', 'NUMERIC', 'SORTABLE', 'averageStars', 'NUMERIC', 'SORTABLE');
 
   const responses = await pipeline.exec();
 
@@ -150,6 +153,25 @@ const createIndexes = async () => {
     console.log('Created indexes.');
   } else {
     console.log('Unexpected error creating indexes :(');
+    console.log(responses);
+  }
+};
+
+const createBloomFilter = async () => {
+  console.log('Deleting any previous bloom filter, creating new bloom filter...');
+
+  const bloomFilterKey = redis.getKeyName('checkinfilter');
+
+  const pipeline = redisClient.pipeline();
+  pipeline.del(bloomFilterKey);
+  pipeline.call('BF.RESERVE', bloomFilterKey, 0.0001, 1000000);
+
+  const responses = await pipeline.exec();
+
+  if (responses.length === 2 && responses[1][1] === 'OK') {
+    console.log('Created bloom filter.');
+  } else {
+    console.log('Unexpected error creating bloom filter :(');
     console.log(responses);
   }
 };
@@ -177,12 +199,16 @@ const runDataLoader = async (params) => {
     case 'indexes':
       await createIndexes();
       break;
+    case 'bloom':
+      await createBloomFilter();
+      break;
     case 'all':
       await loadUsers();
       await loadLocations();
       await loadLocationDetails();
       await loadCheckins();
       await createIndexes();
+      await createBloomFilter();
       break;
     default:
       usage();
