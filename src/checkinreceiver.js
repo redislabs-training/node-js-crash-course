@@ -51,9 +51,21 @@ app.post(
   ],
   async (req, res) => {
     const checkin = req.body;
+    const bloomFilterKey = redis.getKeyName('checkinfilter');
+    const checkinStr = `${checkin.userId}${checkin.locationId}${checkin.starRating}`;
 
-    // Don't (a)wait for this to finish, use callback instead.
-    redisClient.xadd(
+    // Check if we've seen this combination of user, location, star rating before.
+    const checkinSeen = await redisClient.call('BF.EXISTS', bloomFilterKey, checkinStr);
+
+    if (checkinSeen === 1) {
+      logger.info(`Rejecting checkin for user ${checkin.userId} at location ${checkin.locationId} with rating ${checkin.starRating} - seen before!`);
+      return res.status(422).send('Multiple identical checkins are not permitted.');
+    }
+
+    const pipeline = redisClient.pipeline();
+
+    pipeline.call('BF.ADD', bloomFilterKey, checkinStr);
+    pipeline.xadd(
       checkinStreamKey, 'MAXLEN', '~', maxStreamLength, '*', ...Object.entries(checkin).flat(),
       (err, result) => {
         if (err) {
@@ -65,8 +77,10 @@ app.post(
       },
     );
 
+    pipeline.exec();
+
     // Accepted, as we'll do later processing on it...
-    res.status(202).end();
+    return res.status(202).end();
   },
 );
 
