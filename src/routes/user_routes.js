@@ -17,6 +17,7 @@ const removeSensitiveFields = (searchResults, ...fields) => {
   return newSearchResults;
 };
 
+// Get user by ID.
 router.get(
   '/user/:userId',
   [
@@ -31,6 +32,30 @@ router.get(
     SENSITIVE_FIELD_NAMES.map((fieldName) => delete userDetail[fieldName]);
 
     res.status(200).json(userDetail);
+  },
+);
+
+// EXERCISE: Get user's full name.
+router.get(
+  '/user/:userId/fullname',
+  [
+    param('userId').isInt({ min: 1 }),
+    apiErrorReporter,
+  ],
+  async (req, res) => {
+    const { userId } = req.params;
+    /* eslint-disable no-unused-vars */
+    const userKey = redis.getKeyName('users', userId);
+    /* eslint-enable */
+
+    // TODO: Get the firstName and lastName fields from the
+    // user hash whose key is in userKey.
+    // HINT: Check out the HMGET command...
+    // https://redis.io/commands/hmget
+    const firstName = 'TODO';
+    const lastName = 'TODO';
+
+    res.status(200).json({ fullName: `${firstName} ${lastName}` });
   },
 );
 
