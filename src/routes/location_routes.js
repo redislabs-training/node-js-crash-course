@@ -52,6 +52,37 @@ router.get(
   },
 );
 
+// EXERCISE: Get opening hours for a given day.
+router.get(
+  '/location/:locationId/hours/:day',
+  [
+    param('locationId').isInt({ min: 1 }),
+    param('day').isInt({ min: 0, max: 6 }),
+    apiErrorReporter,
+  ],
+  async (req, res) => {
+    /* eslint-disable no-unused-vars */
+    const { locationId, day } = req.params;
+    /* eslint-enable */
+    const locationDetailsKey = redis.getKeyName('locationdetails', locationId);
+
+    // TODO: Get the opening hours for a given day from
+    // the JSON stored at the key held in locationDetailsKey.
+    // You will need to provide the correct JSON path to the hours
+    // array and return the element held in the position specifed by
+    // the day variable.  Make sure RedisJSON returns only the day
+    // requested!
+    const jsonPath = 'TODO';
+
+    /* eslint-enable no-unused-vars */
+    const hoursForDay = JSON.parse(await redisClient.call('JSON.GET', locationDetailsKey, jsonPath));
+    /* eslint-disable */
+
+    // If null response, return empty object.
+    res.status(200).json(hoursForDay || {});
+  },
+);
+
 router.get(
   '/location/:locationId/details',
   [
