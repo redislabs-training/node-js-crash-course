@@ -8,6 +8,8 @@ const cors = require('cors');
 const logger = require('./utils/logger');
 const apiErrorReporter = require('./utils/apierrorreporter');
 
+const useAuth = process.argv[2] === 'auth';
+
 config.set('../config.json');
 
 const redis = require('./utils/redisclient');
@@ -19,16 +21,21 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(cors());
 app.use(express.json());
 
-app.use(session({
-  secret: config.sessionSecret,
-  store: new RedisStore({
-    client: redis.getClient(),
-    prefix: redis.getKeyName('session:'),
-  }),
-  name: 'checkinapp',
-  resave: false,
-  saveUninitialized: true,
-}));
+if (useAuth) {
+  logger.info('Authentication enabled, checkins require a valid user session.');
+  app.use(session({
+    secret: config.sessionSecret,
+    store: new RedisStore({
+      client: redis.getClient(),
+      prefix: redis.getKeyName('session:'),
+    }),
+    name: 'checkinapp',
+    resave: false,
+    saveUninitialized: true,
+  }));
+} else {
+  logger.info('Authentication disabled, checkins do not require a valid user session.');
+}
 
 const checkinStreamKey = redis.getKeyName('checkins');
 const maxStreamLength = config.get('checkinReceiver.maxStreamLength');
@@ -36,7 +43,8 @@ const maxStreamLength = config.get('checkinReceiver.maxStreamLength');
 app.post(
   '/api/checkin',
   (req, res, next) => {
-    if (!req.session.user) {
+    if (useAuth && !req.session.user) {
+      logger.debug('Rejecting checkin - no valid user session found.');
       return res.status(401).send('Authentication required.');
     }
 
