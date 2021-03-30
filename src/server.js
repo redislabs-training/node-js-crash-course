@@ -14,8 +14,7 @@ app.use('/api', routes);
 
 // Check for required environment variables.
 if (process.env.WEATHER_API_KEY === undefined) {
-  console.error('Environment variable WEATHER_API_KEY must be set!');
-  process.exit(1);
+  console.warn('Warning: Environment variable WEATHER_API_KEY is not set!');
 }
 
 const port = config.get('application.port');
