@@ -22,6 +22,17 @@ const runCheckinProcessor = async () => {
     const response = await redisClient.xread('COUNT', '1', 'BLOCK', '5000', 'STREAMS', checkinStreamKey, lastIdRead);
     /* eslint-enable */
 
+    // If a stream entry was read, response looks like:
+    // [
+    //   [ "ncc:checkins",
+    //     [
+    //       [ "1609602085397-0",
+    //         [ "locationId","171","userId","789","starRating","5" ]
+    //       ]
+    //     ]
+    //   ]
+    // ]
+
     if (response) {
       const checkinData = response[0][1][0];
       const fieldNamesAndValues = checkinData[1];
