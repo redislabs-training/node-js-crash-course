@@ -52,8 +52,7 @@ router.get(
     // user hash whose key is in userKey.
     // HINT: Check out the HMGET command...
     // https://redis.io/commands/hmget
-    const firstName = 'TODO';
-    const lastName = 'TODO';
+    const [firstName, lastName] = ['TODO', 'TODO'];
 
     res.status(200).json({ fullName: `${firstName} ${lastName}` });
   },
