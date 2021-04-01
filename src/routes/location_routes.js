@@ -69,7 +69,7 @@ router.get(
     // TODO: Get the opening hours for a given day from
     // the JSON stored at the key held in locationDetailsKey.
     // You will need to provide the correct JSON path to the hours
-    // array and return the element held in the position specifed by
+    // array and return the element held in the position specified by
     // the day variable.  Make sure RedisJSON returns only the day
     // requested!
     const jsonPath = 'TODO';
