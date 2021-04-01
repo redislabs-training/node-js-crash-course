@@ -212,13 +212,21 @@ router.get(
 
       // Call the API.
       const apiResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}`);
-      weatherJSON = await apiResponse.json();
 
-      // Store the results in Redis and set TTL.
-      redisClient.setex(getWeatherKey(locationId), CACHE_TIME, JSON.stringify(weatherJSON));
+      if (apiResponse.status === 200) {
+        // Weather was retrieved OK.
+        weatherJSON = await apiResponse.json();
+
+        // Store the results in Redis and set TTL.
+        redisClient.setex(getWeatherKey(locationId), CACHE_TIME, JSON.stringify(weatherJSON));
+
+        return res.status(200).json(weatherJSON);
+      }
+      
+      return res.status(400).send('Bad request: check your WEATHER_API_KEY!');
     }
 
-    res.status(200).json(weatherJSON);
+    
   },
 );
 
