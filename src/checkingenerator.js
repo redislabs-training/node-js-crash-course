@@ -37,7 +37,7 @@ const runCheckinGenerator = async () => {
   while (true) {
     /* eslint-enable */
     /* eslint-disable no-await-in-loop */
-    await sleep.randomSleep(1, 15);
+    await sleep.randomSleep(1, 3);
     await generateCheckin();
     /* estlint-enable */
   }
