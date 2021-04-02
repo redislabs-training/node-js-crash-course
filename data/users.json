@@ -765,7 +765,7 @@
       "firstName": "Al",
       "lastName": "Appelhof",
       "email": "al.appelhof@example.com",
-      "password": "pamplamousse",
+      "password": "secret123",
       "numCheckins": 4965,
       "lastCheckin": 1587926763828,
       "lastSeenAt": 59
