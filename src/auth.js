@@ -47,7 +47,8 @@ app.post(
     /* eslint-enable */
     const searchResults = await redis.performSearch(redis.getKeyName('usersidx'), `@email:{${emailAddress}}`, 'RETURN', '1', 'password');
 
-    // Valid searchResults looks like [ { password: 'ssssh' } ]
+    // Valid searchResults looks like [ { password: 'ssssh' } ] but the password has
+    // been encrypted with bcrypt (the dataloader encrypts passwords when loading data).
     if (searchResults.length === 1) {
       const passwordCorrect = await bcrypt.compare(password, searchResults[0].password);
 
