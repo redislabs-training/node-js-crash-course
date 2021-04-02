@@ -82,7 +82,7 @@ const runCheckinProcessor = async () => {
       // Simulate some time consuming "work"...
       if (delay) {
         logger.info('Pausing to simulate work.');
-        await sleep.randomSleep(5, 30);
+        await sleep.randomSleep(1, 10);
       }
       /* eslint-enable */
 
