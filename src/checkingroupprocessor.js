@@ -54,9 +54,11 @@ const runCheckinGroupProcessor = async (consumerName) => {
         checkin[k] = v;
       }
 
+      const checkinId = checkin.id;
       const userKey = redis.getKeyName('users', checkin.userId);
       const locationKey = redis.getKeyName('locations', checkin.locationId);
 
+      logger.debug(`${consumerName}: Processing ${checkinId}.`);
       logger.debug(`${consumerName}: Updating user ${userKey} and location ${locationKey}.`);
 
       /* eslint-disable no-await-in-loop */
@@ -64,15 +66,15 @@ const runCheckinGroupProcessor = async (consumerName) => {
         userKey, locationKey, checkin.timestamp, checkin.locationId, checkin.starRating,
       );
 
-      // Pretend to do some time consuming work on this checkin...
-      logger.info(`${consumerName}: Pausing to simulate work.`);
-      await sleep.randomSleep(5, 30);
-
       // Acknowledge that we have processed this entry.
-      const ack = await redisClient.xack(checkinStreamKey, CONSUMER_GROUP_NAME, checkin.id);
-      /* eslint-enable */
+      const ack = await redisClient.xack(checkinStreamKey, CONSUMER_GROUP_NAME, checkinId);
 
-      logger.info(`${consumerName}: ${ack === 1 ? 'Acknowledged' : 'Error acknowledging'} processing of checkin ${checkin.id}.`);
+      logger.info(`${consumerName}: ${ack === 1 ? 'Acknowledged' : 'Error acknowledging'} processing of checkin ${checkinId}.`);
+
+      // Pretend to do something that takes time...
+      logger.info(`${consumerName}: Pausing to simulate work.`);
+      await sleep.randomSleep(1, 5);
+      /* eslint-enable */
     } else {
       logger.info(`${consumerName}: waiting for more checkins...`);
     }
