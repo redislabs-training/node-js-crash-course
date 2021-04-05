@@ -18,6 +18,7 @@ const runCheckinProcessor = async () => {
   /* eslint-disable no-constant-condition */
   while (true) {
     /* eslint-enable */
+
     /* eslint-disable no-await-in-loop */
     const response = await redisClient.xread('COUNT', '1', 'BLOCK', '5000', 'STREAMS', checkinStreamKey, lastIdRead);
     /* eslint-enable */
@@ -78,15 +79,17 @@ const runCheckinProcessor = async () => {
 
       /* eslint-disable no-await-in-loop */
       await pipeline.exec();
-
-      // Simulate some time consuming "work"...
-      if (delay) {
-        logger.info('Pausing to simulate work.');
-        await sleep.randomSleep(1, 10);
-      }
       /* eslint-enable */
 
       logger.info(`Processed checkin ${checkin.id}.`);
+
+      // Simulate some time consuming "work"...
+      if (delay) {
+        /* eslint-disable no-await-in-loop */
+        await sleep.randomSleep(1, 10);
+        /* eslint-enable */
+      }
+      /* eslint-enable */
     } else {
       logger.info('Waiting for more checkins...');
     }
