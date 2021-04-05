@@ -108,4 +108,29 @@ router.get(
   },
 );
 
+// EXERCISE: Get the user(s) last seen at a given location.
+router.get(
+  '/users/at/:locationId',
+  [
+    param('locationId').isInt({ min: 1 }),
+    apiErrorReporter,
+  ],
+  async (req, res) => {
+    /* eslint-disable no-unused-vars */
+    const { locationId } = req.params;
+    /* eslint-enable */
+
+    // Replace 'TODO... YOUR QUERY HERE' with a query that will find all
+    // users whose lastSeenAt field is set to the value stored in locationId.
+    // lastSeenAt was indexed as a numeric type, so you'll need to use the
+    // "numeric range" syntax for this -- see documentation for help:
+    // https://oss.redislabs.com/redisearch/Query_Syntax/
+    const searchResults = await redis.performSearch(
+      redis.getKeyName('usersidx'),
+      'TODO... YOUR QUERY HERE',
+    );
+    res.status(200).json(removeSensitiveFields(searchResults, 'email', ...SENSITIVE_FIELD_NAMES));
+  },
+);
+
 module.exports = router;
