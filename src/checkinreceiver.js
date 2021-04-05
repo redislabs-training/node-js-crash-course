@@ -60,7 +60,7 @@ app.post(
   async (req, res) => {
     const checkin = req.body;
     const bloomFilterKey = redis.getKeyName('checkinfilter');
-    const checkinStr = `${checkin.userId}${checkin.locationId}${checkin.starRating}`;
+    const checkinStr = `${checkin.userId}:${checkin.locationId}:${checkin.starRating}`;
 
     // Check if we've seen this combination of user, location, star rating before.
     const checkinSeen = await redisClient.call('BF.EXISTS', bloomFilterKey, checkinStr);
