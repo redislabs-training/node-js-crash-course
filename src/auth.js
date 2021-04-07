@@ -21,9 +21,9 @@ app.use(session({
   secret: config.sessionSecret,
   store: new RedisStore({
     client: redis.getClient(),
-    prefix: redis.getKeyName('session:'),
+    prefix: redis.getKeyName(`${config.session.keyPrefix}:`),
   }),
-  name: 'checkinapp',
+  name: config.session.appName,
   resave: false,
   saveUninitialized: true,
 }));

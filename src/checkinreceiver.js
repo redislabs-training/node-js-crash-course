@@ -24,12 +24,12 @@ app.use(express.json());
 if (useAuth) {
   logger.info('Authentication enabled, checkins require a valid user session.');
   app.use(session({
-    secret: config.sessionSecret,
+    secret: config.session.secret,
     store: new RedisStore({
       client: redis.getClient(),
-      prefix: redis.getKeyName('session:'),
+      prefix: redis.getKeyName(`${config.session.keyPrefix}:`),
     }),
-    name: 'checkinapp',
+    name: config.session.appName,
     resave: false,
     saveUninitialized: true,
   }));

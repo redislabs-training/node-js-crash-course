@@ -1,6 +1,10 @@
 {
   "logLevel": "debug",
-  "sessionSecret": "red15alltheTh1ngZ!",
+  "session": {
+    "secret": "red15alltheTh1ngZ!",
+    "appName": "checkinapp",
+    "keyPrefix": "session"  
+  },
   "application": {
     "port": 8081
   },
