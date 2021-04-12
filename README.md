@@ -8,7 +8,7 @@ To get the most from this course, you'll need a machine that can run Node.js app
 
 You'll need the following installed on your machine:
 
-* [Docker]https://www.docker.com/) (you'll need the docker-compose command)
+* [Docker](https://www.docker.com/) (you'll need the docker-compose command)
 * [Node.js](https://nodejs.org/) (use the current Long Term Stable - LTS - version)
 * [git]() command line tools
 * Your favorite IDE (we like [VSCode](https://git-scm.com/downloads), but anything you're comfortable with works)
