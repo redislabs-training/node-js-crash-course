@@ -18,7 +18,7 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(cors());
 app.use(express.json());
 app.use(session({
-  secret: config.sessionSecret,
+  secret: config.session.secret,
   store: new RedisStore({
     client: redis.getClient(),
     prefix: redis.getKeyName(`${config.session.keyPrefix}:`),
