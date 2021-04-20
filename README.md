@@ -2,6 +2,8 @@
 
 This is the source code repository for the Node.js Redis Crash Course.  It's designed to be used with the workbooks and videos that make up the course.
 
+If you are looking for solutions to the coding exercises that form an optional part of the course, check out the `solutions` branch.
+
 ## Software Prerequisites
 
 To get the most from this course, you'll need a machine that can run Node.js applications, plus Docker as we'll be using a container that includes Redis and the required add-on modules for this course.
