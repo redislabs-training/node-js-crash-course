@@ -5,8 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "auth": "node ./src/auth.js",
-    "dev": "./node_modules/nodemon/bin/nodemon.js",
-    "lint": "./node_modules/eslint/bin/eslint.js src",
+    "dev": "node ./node_modules/nodemon/bin/nodemon.js",
+    "lint": "node ./node_modules/eslint/bin/eslint.js src",
     "load": "node src/utils/dataloader.js --",
     "checkingenerator": "node ./src/checkingenerator.js",
     "checkingroupprocessor": "node ./src/checkingroupprocessor.js",
