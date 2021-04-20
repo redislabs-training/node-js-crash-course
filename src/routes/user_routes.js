@@ -52,7 +52,7 @@ router.get(
     // user hash whose key is in userKey.
     // HINT: Check out the HMGET command...
     // https://redis.io/commands/hmget
-    const [firstName, lastName] = ['TODO', 'TODO'];
+    const [firstName, lastName] = await redisClient.hmget(userKey, 'firstName', 'lastName');
 
     res.status(200).json({ fullName: `${firstName} ${lastName}` });
   },
