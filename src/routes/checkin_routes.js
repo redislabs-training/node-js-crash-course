@@ -68,8 +68,8 @@ router.get(
     // (most recent) checkin from the stream whose key is
     // stored in checkinStreamKey.
     // https://redis.io/commands/xrevrange
-    const latestCheckin = await redisClient.xrevrange(checkinStreamKey, 'TODO');
-
+    const latestCheckin = await redisClient.xrevrange(checkinStreamKey, '+', '-', 'COUNT', '1');
+    console.log(latestCheckin);
     // Convert array of arrays response to array of objects.
     const response = buildCheckinObjects(latestCheckin);
 
