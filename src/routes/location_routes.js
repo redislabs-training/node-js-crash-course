@@ -72,7 +72,7 @@ router.get(
     // array and return the element held in the position specified by
     // the day variable.  Make sure RedisJSON returns only the day
     // requested!
-    const jsonPath = 'TODO';
+    const jsonPath = `.hours[${day}]`;
 
     /* eslint-enable no-unused-vars */
     const hoursForDay = JSON.parse(await redisClient.call('JSON.GET', locationDetailsKey, jsonPath));
