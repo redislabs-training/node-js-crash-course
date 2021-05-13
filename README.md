@@ -1,8 +1,10 @@
-# node-js-crash-course
+# Redis / Node.js Crrash Course
 
 This is the source code repository for the Node.js Redis Crash Course.  It's designed to be used with the workbooks and videos that make up the course.
 
 If you are looking for solutions to the coding exercises that form an optional part of the course, check out the `solutions` branch.
+
+Check out our [YouTube channel](https://youtube.com/redislabs) for regular new Redis content!
 
 ## Software Prerequisites
 
