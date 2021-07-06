@@ -1,4 +1,4 @@
-# Redis / Node.js Crrash Course
+# Redis / Node.js Crash Course
 
 This is the source code repository for the Node.js Redis Crash Course.  It's designed to be used with the workbooks and videos that make up the course.
 
