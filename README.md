@@ -4,7 +4,7 @@ This is the source code repository for the Node.js Redis Crash Course.  It's des
 
 If you are looking for solutions to the coding exercises that form an optional part of the course, check out the `solutions` branch.
 
-Check out our [YouTube channel](https://youtube.com/redislabs) for regular new Redis content!
+Check out our [YouTube channel](https://youtube.com/redisinc) for regular new Redis content!
 
 ## Software Prerequisites
 
