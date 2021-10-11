@@ -17,3 +17,16 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+  node:
+    container_name: node_rediscrashcourse
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "npm run load && npm run dev"
+    depends_on:
+      - redis
+    ports:
+      - 8080:8080
+    environment:
+      - REDIS_HOST=redis
