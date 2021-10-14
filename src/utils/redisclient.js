@@ -4,7 +4,7 @@ const logger = require('./logger');
 
 const MAX_SEARCH_RESULTS = 1000;
 
-config.set('../../config.json');
+config.set(`../../${process.env.CRASH_COURSE_CONFIG_FILE || 'config.json'}`);
 
 const redis = new Redis({
   host: config.redis.host,
