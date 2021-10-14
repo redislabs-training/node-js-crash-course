@@ -274,3 +274,14 @@ You should see the summary information for location 200, Katia's Kitchen:
 ```
  
 Great! Now you're up and running. 
+
+## Using an Alternative Configuration File
+
+If you want to use an alternative configuration file, create a copy of `config.json`... for example `my_config.json`.  Then, set an environment variable as follows:
+
+```bash
+$ cd node-js-crash-course
+$ export CRASH_COURSE_CONFIG_FILE=my_config.json
+```
+
+Start the application as described above and it should now use values from your new config file.  Note that the config file should be in the root folder of this repository (where you'll find the supplied `config.json`).

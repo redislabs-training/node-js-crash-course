@@ -9,7 +9,7 @@ const cors = require('cors');
 const logger = require('./utils/logger');
 const apiErrorReporter = require('./utils/apierrorreporter');
 
-config.set('../config.json');
+config.set(`../${process.env.CRASH_COURSE_CONFIG_FILE || 'config.json'}`);
 
 const redis = require('./utils/redisclient');
 
