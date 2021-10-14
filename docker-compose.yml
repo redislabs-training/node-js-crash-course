@@ -27,6 +27,7 @@ services:
     depends_on:
       - redis
     ports:
-      - 8080:8080
+      - 8081:8081
     environment:
       - REDIS_HOST=redis
+      - CRASH_COURSE_CONFIG_FILE=config_docker.json

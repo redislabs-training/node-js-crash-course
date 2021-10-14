@@ -1,0 +1,24 @@
+{
+    "logLevel": "debug",
+    "session": {
+      "secret": "red15alltheTh1ngZ!",
+      "appName": "checkinapp",
+      "keyPrefix": "session"  
+    },
+    "application": {
+      "port": 8081
+    },
+    "auth": {
+      "port": 8083
+    },
+    "checkinReceiver": {
+      "port": 8082,
+      "maxStreamLength": 500000
+    },
+    "redis": {
+      "host": "redis",
+      "port": 6379,
+      "password": null,
+      "keyPrefix": "ncc"
+    }
+  }
