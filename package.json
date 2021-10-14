@@ -21,7 +21,7 @@
   "keywords": [
     "Redis"
   ],
-  "author": "Redis Labs",
+  "author": "Redis",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/redislabs-training/node-js-crash-course/issues"
