@@ -5,7 +5,7 @@ const cors = require('cors');
 const routes = require('./routes');
 const logger = require('./utils/logger');
 
-config.set('../config.json');
+config.set(`../${process.env.CRASH_COURSE_CONFIG_FILE || 'config.json'}`);
 
 const app = express();
 app.use(morgan('combined', { stream: logger.stream }));

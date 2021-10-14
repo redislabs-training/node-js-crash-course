@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const logger = require('./utils/logger');
 const sleep = require('./utils/sleep');
 
-config.set('../config.json');
+config.set(`../${process.env.CRASH_COURSE_CONFIG_FILE || 'config.json'}`);
 
 const CHECKIN_RECEIVER_URL = `http://localhost:${config.checkinReceiver.port}/api/checkin`;
 

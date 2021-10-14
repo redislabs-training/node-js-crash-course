@@ -10,7 +10,7 @@ const apiErrorReporter = require('./utils/apierrorreporter');
 
 const useAuth = process.argv[2] === 'auth';
 
-config.set('../config.json');
+config.set(`../${process.env.CRASH_COURSE_CONFIG_FILE || 'config.json'}`);
 
 const redis = require('./utils/redisclient');
 
