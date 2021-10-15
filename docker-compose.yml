@@ -23,11 +23,10 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: sh -c "npm run load && npm run dev"
+    command: sh -c "npm run load all && npm run dev"
     depends_on:
       - redis
     ports:
       - 8081:8081
     environment:
-      - REDIS_HOST=redis
       - CRASH_COURSE_CONFIG_FILE=config_docker.json
